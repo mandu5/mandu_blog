@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Loader, Header } from "../components";
-import { SpaceAme } from "../models";
+import SpaceAme from "../models/SpaceAme";
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
             <br />A Frontend Developer from South Korea 🇰🇷
           </h1>
         </div>
-        {/* <Canvas className="w-full h-screen bg-transparent" camera={{ near: 0.1, far: 1000 }}>
+        <Canvas className="w-full h-screen bg-transparent" camera={{ near: 0.1, far: 1000 }}>
           <Suspense fallback={<Loader />}>
             <directionalLight position={[1, 1, 1]} intensity={2} />
             <ambientLight intensity={0.5} />
@@ -25,7 +25,7 @@ export default function Home() {
             <OrbitControls reverseOrbit />
             <SpaceAme />
           </Suspense>
-        </Canvas> */}
+        </Canvas>
       </section>
     </>
   );

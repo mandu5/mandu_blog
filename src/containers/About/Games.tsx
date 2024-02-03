@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { gamesInfo } from "../../constants";
+import { gamesInfo } from "@/constants";
+import Link from "next/link";
+import Image from "next/image";
 
 const Games = () => {
   return (
@@ -9,12 +10,12 @@ const Games = () => {
       <div className="my-10 gap-16">
         {gamesInfo.map((games) => (
           <div className="lg:w-[800px]" key={games.name}>
-            <Link to={games.link} target="_blank" rel="noopener noreferrer">
+            <Link href={games.link} target="_blank" rel="noopener noreferrer">
               <div className="flex">
                 <div className="block-container w-12 h-12 mt-4">
                   <div className={`btn-back rounded-xl ${games.theme}`} />
                   <div className="btn-front rounded-xl justify-center items-center">
-                    <img src={games.iconUrl} alt="img" className="w-50 h-50 object-contain" />
+                    <Image src={games.iconUrl} alt="Image" className="w-50 h-50 object-contain" />
                   </div>
                 </div>
                 <div className="mx-20">
@@ -25,7 +26,7 @@ const Games = () => {
                   <p className="text-slate-500">Lv 221 / 패스파인더</p>
                 </div>
                 <div className="mx-20">
-                  <img src={games.characterUrl} alt="img" className="w-50 h-50 object-contain" />
+                  <Image src={games.characterUrl} alt="img" className="w-50 h-50 object-contain" />
                 </div>
               </div>
             </Link>

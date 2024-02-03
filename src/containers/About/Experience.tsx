@@ -1,5 +1,6 @@
 import React from "react";
-import { experiencesInfo } from "../../constants";
+import Image from "next/image";
+import { experiencesInfo } from "@/constants";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 
 const Experience = () => {
@@ -10,12 +11,17 @@ const Experience = () => {
         <VerticalTimeline>
           {experiencesInfo.map((experience) => (
             <VerticalTimelineElement
+              visible={true}
               key={experience.company_name}
               date={experience.date}
               iconStyle={{ background: experience.iconBg }}
               icon={
                 <div className="flex justify-center items-center w-full h-full">
-                  <img src={experience.icon} alt={experience.company_name} className="w-[60%] h-[60%] object-contain" />
+                  <Image
+                    src={experience.icon}
+                    alt={experience.company_name}
+                    className="w-[60%] h-[60%] object-contain"
+                  />
                 </div>
               }
               contentStyle={{

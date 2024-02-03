@@ -1,20 +1,19 @@
 "use client";
 import React from "react";
+import { Games, Competitive, Projects, Experience, Skills } from "@/containers/About";
+import { Footer, Header } from "@/components";
 import "react-vertical-timeline-component/style.min.css";
-import Footer from "../../components/Footer";
-import { Games, Competitive, Projects, Experience, Skills } from "../../components/About";
-import { Navbar } from "../../components";
 
 const About: React.FC = () => {
   return (
     <>
-      <Navbar />
+      <Header />
       <section className="max-container">
         <h1 className="head-text">
           <span>mandu</span>
         </h1>
         <Skills />
-        {/* <Experience /> */}
+        <Experience />
         <Projects />
         <Competitive />
         <Games />

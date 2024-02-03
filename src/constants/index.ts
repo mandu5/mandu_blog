@@ -16,15 +16,7 @@ import {
 } from "../../public/icons";
 import { maple, mapleCharacter } from "../../public/images";
 
-export const skillsInfo = [
-  javascript,
-  typescript,
-  react,
-  nextjs,
-  tailwindcss,
-  recoil,
-  styledComponents,
-];
+export const skillsInfo = [javascript, typescript, react, nextjs, tailwindcss, recoil, styledComponents];
 
 export const experiencesInfo = [
   {
@@ -163,7 +155,7 @@ export const gamesInfo = [
   },
 ];
 
-export const socialLinks = [
+export const socialLinks: any = [
   {
     name: "Contact",
     iconUrl: contact,

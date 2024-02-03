@@ -30,13 +30,7 @@ const SpaceAme = () => {
 
   return (
     <a.group>
-      <primitive
-        ref={ref}
-        object={ame.scene}
-        position={amePosition}
-        scale={ameScale}
-        rotation={ameRotation}
-      />
+      <primitive ref={ref} object={ame.scene} position={amePosition} scale={ameScale} rotation={ameRotation} />
     </a.group>
   );
 };

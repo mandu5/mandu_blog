@@ -1,5 +1,6 @@
 import React from "react";
-import { skillsInfo } from "../../constants";
+import { skillsInfo } from "@/constants";
+import Image from "next/image";
 
 const Skills = () => {
   return (
@@ -11,7 +12,7 @@ const Skills = () => {
             <div className="block-container w-20 h-20" key={index}>
               <div className="btn-back rounded-xl" />
               <div className="btn-front rounded-xl flex justify-center items-center">
-                <img src={skill} alt="img" className="w-1/2 h-1/2 object-contain" />
+                <Image src={skill} alt="img" className="w-1/2 h-1/2 object-contain" />
               </div>
             </div>
           ))}
