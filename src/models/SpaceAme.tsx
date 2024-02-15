@@ -12,7 +12,7 @@ const SpaceAme = () => {
 
   useEffect(() => {
     actions[names[0]]?.reset().fadeIn(0.5).play();
-  }, []);
+  }, [actions, names]);
 
   const adjustAmePosition = () => {
     let screenScale = null;
