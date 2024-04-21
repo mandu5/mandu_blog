@@ -22,7 +22,7 @@ export default function Home() {
             <directionalLight position={[1, 1, 1]} intensity={2} />
             <ambientLight intensity={0.5} />
             <hemisphereLight groundColor="#000000" />
-            <OrbitControls reverseOrbit />
+            <OrbitControls reverseOrbit minDistance={3} maxDistance={20} />
             <SpaceAme />
           </Suspense>
         </Canvas>

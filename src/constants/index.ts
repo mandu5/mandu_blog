@@ -26,10 +26,7 @@ export const experiencesInfo = [
     iconBg: "#accbe1",
     date: "March 2020 - April 2021",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
       "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
     ],
   },
   {
@@ -38,12 +35,7 @@ export const experiencesInfo = [
     icon: github,
     iconBg: "#fbc3bc",
     date: "Jan 2021 - Feb 2022",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
+    points: ["Developing and maintaining web applications using React.js and other related technologies."],
   },
   {
     title: "Web Developer",
@@ -51,12 +43,7 @@ export const experiencesInfo = [
     icon: github,
     iconBg: "#b7e4c7",
     date: "Jan 2022 - Jan 2023",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
+    points: ["Implementing responsive design and ensuring cross-browser compatibility."],
   },
   {
     title: "Full stack Developer",
@@ -64,12 +51,7 @@ export const experiencesInfo = [
     icon: github,
     iconBg: "#a2d2ff",
     date: "Jan 2023 - Present",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
+    points: ["Developing and maintaining web applications using React.js and other related technologies."],
   },
 ];
 
@@ -159,7 +141,7 @@ export const socialLinks: any = [
   {
     name: "Contact",
     iconUrl: contact,
-    link: "/contact",
+    link: "mailto:rhdudals0505@naver.com",
   },
   {
     name: "GitHub",
