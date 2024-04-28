@@ -1,5 +1,5 @@
 import React from "react";
-import { competitiveInfo } from "@/constants";
+import { competitiveInfo } from "../../constants";
 import Link from "next/link";
 import Image from "next/image";
 

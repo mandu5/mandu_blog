@@ -1,5 +1,5 @@
 "use client";
-import { Loader } from "@/components";
+import { Loader } from "../components";
 import { Canvas } from "@react-three/fiber";
 
 const loading = () => {

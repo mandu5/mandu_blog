@@ -1,5 +1,5 @@
 import React from "react";
-import { skillsInfo } from "@/constants";
+import { skillsInfo } from "../../constants";
 import Image from "next/image";
 
 const Skills = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { experiencesInfo } from "@/constants";
+import { experiencesInfo } from "../../constants";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 
 const Experience = () => {

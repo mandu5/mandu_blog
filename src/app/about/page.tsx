@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { Games, Competitive, Projects, Experience, Skills } from "@/components/about";
-import { Footer, Header } from "@/components";
+import { Games, Competitive, Projects, Experience, Skills } from "../../components/about";
+import { Footer, Header } from "../../components";
 import "react-vertical-timeline-component/style.min.css";
 
 const About: React.FC = () => {

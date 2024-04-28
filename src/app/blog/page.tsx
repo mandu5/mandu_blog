@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Header, Footer } from "@/components";
+import { Header, Footer } from "../../components";
 
 const Blog: React.FC = () => {
   return (
