@@ -12,7 +12,7 @@ const Footer = () => {
           © 2023 <strong>Mandu</strong>. All rights reserved.
         </p>
         <div className="flex gap-3 justify-center items-center">
-          {socialLinks.map((link) => (
+          {socialLinks.map((link: any) => (
             <Link key={link.name} href={`${link.link}`}>
               <Image src={link.iconUrl} alt={link.name} className="w-6 h-6 object-contain hover:opacity-60" />
             </Link>

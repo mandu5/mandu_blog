@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import spaceAme from "../../public/3d/space_ame.glb";
+import { space_ame } from "../../public/3d";
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { a } from "@react-spring/three";
 
 const SpaceAme = () => {
   const group = useRef();
-  const ame = useGLTF(spaceAme);
-  const { animations } = useGLTF(spaceAme);
+  const ame = useGLTF(space_ame);
+  const { animations } = useGLTF(space_ame);
   const { ref, names, actions } = useAnimations(animations, group);
 
   useEffect(() => {

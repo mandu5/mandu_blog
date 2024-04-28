@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "ManduTown",
-  description: "Frontend Developer Mandu's personal website & blog",
+  description: "Software Engineer Mandu's personal website & blog",
   icons: {
     icon: [
       {
