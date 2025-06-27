@@ -1,6 +1,4 @@
-import Footer from "./Footer";
-import Loader from "./Loader";
-import Header from "./Header";
-import Alert from "./Alert";
+import Footer from "./layout/Footer";
+import Header from "./layout/Header";
 
-export { Footer, Loader, Header, Alert };
+export { Footer, Header };

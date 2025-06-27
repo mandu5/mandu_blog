@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,51 +5,65 @@
 :root {
   --blue-rgb: 237 245 255;
   --green-rgb: 125 161 35;
+  --touch-action: pan-y pinch-zoom;
 }
 
 body {
-  font-family: "Work Sans", sans-serif;
+  @apply font-sans text-gray-900 font-normal leading-relaxed bg-white;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: var(--touch-action);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 @layer utilities {
   .max-container {
     @apply max-w-5xl mx-auto sm:p-16 pb-12 !pt-[126px] px-8 min-h-[calc(100vh-80px)];
   }
-
   .head-text {
-    @apply sm:text-5xl text-3xl font-semibold sm:leading-snug font-poppins;
+    @apply sm:text-5xl text-3xl font-semibold sm:leading-snug tracking-tight;
   }
-
   .subhead-text {
-    @apply font-semibold sm:text-3xl text-xl relative font-poppins;
+    @apply font-semibold sm:text-3xl text-xl relative tracking-tight;
   }
-
   .blue-gradient_text {
     @apply bg-gradient-to-r from-[#00c6ff] to-[#0072ff] bg-clip-text text-transparent;
   }
-
   .input {
     @apply bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-2.5 font-normal shadow-card;
   }
-
   .textarea {
     @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-200 focus:ring-blue-500 focus:border-blue-500 mt-2.5 font-normal shadow-card;
   }
-
   .btn {
-    @apply text-white bg-gradient-to-r from-[#00c6ff] to-[#0072ff] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+    @apply text-white bg-gradient-to-r from-[#00c6ff] to-[#0072ff] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center active:scale-95 transition-transform duration-100;
   }
-
   .header {
     @apply flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto absolute top-0 bg-transparent z-10 right-0 left-0;
   }
-
   .footer {
     @apply max-w-5xl mx-auto sm:px-16 pb-6 px-8 flex flex-col gap-7;
   }
-
-  .footer-container {
-    @apply flex flex-wrap gap-7 items-center justify-between;
+  .scroll-container {
+    @apply overflow-y-auto overscroll-contain;
+  }
+  .font-poppins {
+    font-family: "Poppins", sans-serif;
+  }
+  .font-work-sans {
+    font-family: "Work Sans", sans-serif;
+  }
+  .text-body {
+    @apply text-base leading-relaxed;
+  }
+  .text-heading {
+    @apply text-2xl sm:text-3xl font-semibold tracking-tight;
+  }
+  .text-subheading {
+    @apply text-xl sm:text-2xl font-medium tracking-tight;
   }
 }
 
@@ -60,7 +72,6 @@ body {
   transition: 250ms;
   perspective: 500px;
 }
-
 .block-container .btn-back {
   position: absolute;
   inset: 0;
@@ -74,35 +85,27 @@ body {
   will-change: transform;
   box-shadow: 16px 0 40px #e4e4e4;
 }
-
 .block-container .btn-back-red {
   background: linear-gradient(135deg, #ff4b1f -20%, #ff9068 120%);
 }
-
 .block-container .btn-back-green {
   background: linear-gradient(135deg, #adfda2 -20%, #11d3f3 120%);
 }
-
 .block-container .btn-back-yellow {
   background: linear-gradient(135deg, #f7971e -20%, #ffd200 120%);
 }
-
 .block-container .btn-back-blue {
   background: linear-gradient(135deg, #0061ff -20%, #60efff 120%);
 }
-
 .block-container .btn-back-orange {
   background: linear-gradient(135deg, #ff0f7b -20%, #f89b29 120%);
 }
-
 .block-container .btn-back-pink {
   background: linear-gradient(135deg, #e81cff -20%, #40c9ff 120%);
 }
-
 .block-container .btn-back-black {
   background: linear-gradient(135deg, #0a1647 -20%, #e4e7e4 120%);
 }
-
 .block-container .btn-front {
   position: absolute;
   inset: 0;
@@ -117,15 +120,14 @@ body {
   transform-origin: top left;
   overflow: hidden;
 }
-
 .block-container:hover > .btn-back {
   transform: translateZ(20px) rotateZ(15deg) rotateX(-20deg) rotateY(-20deg);
 }
-
 .block-container:hover > .btn-front {
   transform: translateZ(80px) translateY(-5px) rotateX(15deg) rotateY(15deg);
 }
 
+/* Loading animation (최적화 유지) */
 .loading {
   position: relative;
   display: flex;
@@ -147,23 +149,13 @@ body {
   animation-delay: calc(var(--i) * 0.2s);
 }
 @keyframes animate {
-  0% {
-    background: #0f0;
-    box-shadow: 0 0 5px #0f0, 0 0 15px #0f0, 0 0 30px #0f0, 0 0 50px #0f0;
-    rotate: 0deg;
-  }
+  0%,
   20% {
     background: #0f0;
     box-shadow: 0 0 5px #0f0, 0 0 15px #0f0, 0 0 30px #0f0, 0 0 50px #0f0;
     rotate: 0deg;
   }
-  40% {
-    background: #0f0;
-    box-shadow: 0 0 5px #0f0, 0 0 15px #0f0, 0 0 30px #0f0, 0 0 50px #0f0;
-    rotate: 90deg;
-    transform-origin: bottom;
-    filter: hue-rotate(0deg);
-  }
+  40%,
   80% {
     background: #0f0;
     box-shadow: 0 0 5px #0f0, 0 0 15px #0f0, 0 0 30px #0f0, 0 0 50px #0f0;

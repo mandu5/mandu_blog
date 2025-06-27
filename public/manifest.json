@@ -1,0 +1,16 @@
+{
+  "name": "ManduTown",
+  "short_name": "ManduTown",
+  "description": "Software Engineer Mandu's personal website & blog",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/images/favicon.png",
+      "sizes": "25x25",
+      "type": "image/png"
+    }
+  ]
+}

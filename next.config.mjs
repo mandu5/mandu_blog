@@ -1,23 +1,27 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config, { isServer }) => {
+  images: {
+    remotePatterns: [],
+    unoptimized: true,
+  },
+  webpack: (config) => {
+    // 웹팩 설정
     config.module.rules.push({
       test: /\.(glb|gltf)$/,
       use: [
         {
           loader: "file-loader",
           options: {
-            outputPath: "static/models/", // Adjust the output path as needed
-            publicPath: "/_next/static/models/", // Adjust the public path as needed
+            outputPath: "static/models/",
+            publicPath: "/_next/static/models/",
             name: "[name].[ext]",
-            esModule: false, // This option is important for Next.js
           },
         },
       ],
     });
-
     return config;
   },
+  reactStrictMode: true,
 };
 
 export default nextConfig;

@@ -1,28 +1,76 @@
-import type { Metadata } from "next";
 import "./globals.css";
+import { Work_Sans } from "next/font/google";
+import type { Metadata } from "next";
+import { Footer, Header } from "@/components";
+
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-work-sans",
+  preload: true,
+});
 
 export const metadata: Metadata = {
-  title: "ManduTown",
-  description: "Software Engineer Mandu's personal website & blog",
-  icons: {
-    icon: [
+  metadataBase: new URL("https://mandu5.com"),
+  title: {
+    default: "mandu5",
+    template: "%s | mandu5",
+  },
+  description: "Personal portfolio website of Youngmin, a Software Developer from South Korea",
+  keywords: ["portfolio", "developer", "software engineer", "web development", "frontend", "backend"],
+  authors: [{ name: "Youngmin" }],
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    url: "https://mandu5.com",
+    siteName: "mandu5",
+    title: "mandu5 - Software Developer",
+    description: "Personal portfolio website of Youngmin, a Software Developer from South Korea",
+    images: [
       {
-        url: "/images/favicon.png",
-        href: "/images/favicon.png",
-        sizes: "25px",
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "mandu5 portfolio",
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "mandu5 - Software Developer",
+    description: "Personal portfolio website of Youngmin, a Software Developer from South Korea",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="bg-slate-300/20">{children}</body>
+    <html lang="ko" className={workSans.variable}>
+      <body className="font-sans">
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

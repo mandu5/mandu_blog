@@ -13,21 +13,25 @@
     "jsx": "preserve",
     "incremental": true,
     "allowSyntheticDefaultImports": true,
-    "declaration":true,
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true, 
-    "noUnusedParameters": true, 
-    "noImplicitReturns": true, 
-    "noImplicitAny": true, 
-    "strictNullChecks": true, 
-    "strictFunctionTypes": true, 
-    "strictPropertyInitialization": true, 
-    "noImplicitThis": true, 
-    "alwaysStrict": true, 
-    "plugins": [{
-      "name": "next"
-    }],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "target": "es2015",
+    "downlevelIteration": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
       "@/*": ["./src/*"]
     }
