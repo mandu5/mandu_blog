@@ -1,31 +1,14 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-
-const projects = [
-  {
-    title: "E-commerce Platform",
-    description: "A full-featured e-commerce platform built with Next.js and TypeScript",
-    image: "/assets/images/project1.jpg",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
-    link: "https://example.com",
-  },
-  {
-    title: "Portfolio Website",
-    description: "A personal portfolio website showcasing my work and skills",
-    image: "/assets/images/project2.jpg",
-    tags: ["React", "Next.js", "Tailwind CSS"],
-    link: "https://example.com",
-  },
-  // Add more projects as needed
-];
+import { projectsData } from "@/constants";
 
 const Projects = () => {
   return (
     <>
       <h1 className="py-16 text-heading mb-8">작업</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {projects.map((project) => (
+        {projectsData.map((project) => (
           <div
             key={project.title}
             className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col"

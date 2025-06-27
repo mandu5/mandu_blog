@@ -9,6 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        primary: "#0070f3",
+        secondary: "#ff4081",
         gray: {
           200: "#D5DAE1",
         },
@@ -21,7 +23,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        worksans: ["Poppins", "sans-serif"],
+        worksans: ["Work Sans", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
       },
       boxShadow: {
