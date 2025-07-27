@@ -2,17 +2,19 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const navLinks = [
-  { href: "/about", label: "링크" },
-  { href: "/cv", label: "이력" },
-  { href: "/projects", label: "작업" },
-  { href: "/blog", label: "블로그" },
+  { href: "/links", labelKey: "nav.links" },
+  { href: "/profile", labelKey: "nav.profile" },
+  { href: "/projects", labelKey: "nav.projects" },
+  { href: "/blog", labelKey: "nav.blog" },
 ];
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 0);
@@ -23,7 +25,9 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100" : "bg-white/90"
+        isScrolled
+          ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800"
+          : "bg-white/90 dark:bg-gray-900/90"
       }`}
       role="banner"
     >
@@ -31,22 +35,24 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           <Link
             href="/"
-            className="text-heading font-bold transition-colors duration-200 text-gray-900 hover:text-blue-600"
-            aria-label="홈으로 이동"
+            className="text-heading font-bold transition-colors duration-200 text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400"
+            aria-label="Go to Home"
           >
             mandu5
           </Link>
-          <nav className="flex space-x-8" aria-label="메인 네비게이션">
+          <nav className="flex space-x-8" aria-label="Main Navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={`text-body transition-colors duration-200 ${
-                  pathname === link.href ? "text-blue-600 font-bold" : "text-gray-600 hover:text-gray-800"
+                  pathname === link.href
+                    ? "text-blue-600 dark:text-blue-400 font-bold"
+                    : "text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100"
                 }`}
                 aria-current={pathname === link.href ? "page" : undefined}
               >
-                {link.label}
+                {t(link.labelKey)}
               </Link>
             ))}
           </nav>

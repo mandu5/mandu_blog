@@ -6,7 +6,7 @@ import { projectsData } from "@/constants";
 const Projects = () => {
   return (
     <>
-      <h1 className="py-16 text-heading mb-8">작업</h1>
+      <h1 className="py-16 text-heading mb-8">Projects</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projectsData.map((project) => (
           <div

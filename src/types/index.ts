@@ -14,6 +14,7 @@ export interface CVItem {
   subtitle?: string;
   period: string;
   description?: string[];
+  location?: string;
 }
 
 export interface AwardItem {
@@ -30,6 +31,7 @@ export interface Project {
   tags: string[];
   image: string;
   title: string;
+  period?: string;
 }
 
 export interface BlogPost {

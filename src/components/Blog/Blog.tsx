@@ -6,7 +6,7 @@ import { blogPosts } from "@/constants";
 const Blog = () => {
   return (
     <>
-      <h1 className="py-16 text-heading mb-8">블로그</h1>
+      <h1 className="py-16 text-heading mb-8">Blog</h1>
       <div className="space-y-8">
         {blogPosts.map((post) => (
           <article key={post.slug} className="border-b border-gray-200 pb-8">

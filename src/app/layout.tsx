@@ -3,6 +3,9 @@ import { Work_Sans } from "next/font/google";
 import type { Metadata } from "next";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import ToggleButtons from "@/components/ui/ToggleButtons";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -67,10 +70,15 @@ export const viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" className={workSans.variable}>
-      <body className="font-sans">
-        <Header />
-        {children}
-        <Footer />
+      <body className="font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+        <ThemeProvider>
+          <LanguageProvider>
+            <Header />
+            <ToggleButtons />
+            {children}
+            <Footer />
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

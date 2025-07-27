@@ -26,33 +26,135 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const educationData: CVItem[] = [
-  { school: "서강대학교", major: "컴퓨터공학과 학부 졸업", period: "2018. 3 – 2025. 2" },
-].map((e) => ({ title: e.school, subtitle: e.major, period: e.period }));
+  {
+    school: "Pennsylvania State University",
+    major: "B.S. in Software Engineering",
+    period: "2024 - Present",
+    location: "Pennsylvania, United States",
+  },
+  {
+    school: "Xi'an Jiaotong Liverpool University",
+    major: "B.E. in Computer Science and Technology",
+    period: "2020 - 2022",
+    location: "Suzhou, Jiangsu, China",
+  },
+  {
+    school: "Indus International School Bangalore",
+    major: "High School Diploma, International Baccalaureate",
+    period: "2011 - 2019",
+    location: "Bangalore, India",
+  },
+].map((e) => ({ title: e.school, subtitle: e.major, period: e.period, location: e.location }));
 
 export const careerData: CVItem[] = [
   {
-    company: "넥슨코리아",
-    position: "소프트웨어 엔지니어",
-    period: "2025. 1 – 현재",
-    team: "인텔리전스랩스 알고리즘연구팀",
-    details: ["프로그래밍 대회 기획 및 알고리즘 문제 연구개발", "사내 분야불문 여러 최적화 문제의 해결"],
+    company: "R.O.K, MND",
+    position: "UI/UX Designer",
+    period: "08/2022 - 01/2024",
+    team: "",
+    details: [
+      "Re-architected website structure using code minification, lazy loading, and image compression to reduce page load times by 40%.",
+      "Implemented fully responsive UI designs that improved user retention and engagement.",
+    ],
   },
-  // ... (기타 경력 데이터)
-].map((c) => ({ title: c.company, subtitle: `${c.position} | ${c.team}`, period: c.period, description: c.details }));
+].map((c) => ({ title: c.company, subtitle: c.position, period: c.period, description: c.details }));
 
 export const awardsData: AwardItem[] = [
-  { name: "삼성 대학생 프로그래밍 경진대회 (SCPC) 2024", date: "2024. 8. 31", desc: "개인, 4등상" },
-  // ... (기타 수상 데이터)
+  {
+    name: "LG AImers",
+    date: "06/2024 - 08/2024",
+    desc: "LG AI Research - Ranked in the top 5.5% among 1,400 participants in an Anomaly Detection competition",
+  },
+];
+
+export const certificatesData: CVItem[] = [
+  {
+    title: "Google Machine Learning Bootcamp",
+    subtitle: "Google Developers Group",
+    period: "06/2024 - 10/2024",
+    description: [
+      "Engineered a regression model for used car price prediction, increasing accuracy by 33% through advanced feature engineering and hyperparameter tuning.",
+      "Deployed a financial advisor model using Python and TensorFlow achieving scalable production API integration with sub-second response times.",
+      "Utilized scikit-learn, XGBoost, and LightGBM to drive data-driven decision-making on real-world datasets.",
+    ],
+  },
+  {
+    title: "Deep Learning Specialization",
+    subtitle: "DeepLearning.ai",
+    period: "05/2024 - 08/2024",
+    description: [],
+  },
+  {
+    title: "Kakao Enterprise Military AI-SW Intermediate Course",
+    subtitle: "Kakao",
+    period: "09/2024 - 11/2024",
+    description: [],
+  },
+  {
+    title: "IBM Data Science Specialization",
+    subtitle: "IBM",
+    period: "08/2023 - 10/2023",
+    description: [],
+  },
+  {
+    title: "Ne(O)rdinary Hackathon",
+    subtitle: "CMC 10th App Launching Club, SoftSquared",
+    period: "04/2022 - 05/2022",
+    description: [
+      "Developed a schedule-sharing platform for small theaters, resolving conflicting user preferences and improving access to play schedules.",
+    ],
+  },
+];
+
+export const projectsData: Project[] = [
+  {
+    title: "Financial Advisor Chatbot",
+    theme: "btn-back-green",
+    name: "Google Machine Learning Bootcamp",
+    description:
+      "Built an AI-driven chatbot using google/gemma-2-2b-it to deliver personalized financial recommendations. Leveraged Parameter-Efficient Fine-Tuning (PEFT) with LoRA and 4-bit quantization to reduce memory overhead and improve model performance.",
+    image: "/assets/images/project1.jpg",
+    tags: ["Python", "TensorFlow", "PEFT", "LoRA", "Gemma"],
+    link: "https://www.kaggle.com/models/mandu5/financial-advisor",
+    period: "08/2024 - 10/2024",
+  },
+  {
+    title: "JakimFriend",
+    theme: "btn-back-blue",
+    name: "SoftSquared",
+    description:
+      "Led front-end development of a cross-platform React Native application for group self-improvement challenges. Integrated data visualization and social login features to enhance user experience and engagement.",
+    image: "/assets/images/project2.jpg",
+    tags: ["React Native", "JavaScript", "Data Visualization", "Social Login"],
+    link: "https://github.com/JakSimFriend/frontend",
+    period: "06/2024 - 08/2024",
+  },
+];
+
+export const contactData = {
+  location: "Seoul, South Korea",
+  phone: "(+82) 1098554562",
+  email: "rhdudals0505@naver.com",
+  links: [
+    { name: "LinkedIn", url: "http://www.linkedin.com/in/mandu5" },
+    { name: "Github", url: "https://github.com/mandu5" },
+  ],
+};
+
+export const languagesData = [
+  { language: "English", level: "native" },
+  { language: "Korean", level: "native" },
+  { language: "Japanese", level: "Working knowledge" },
 ];
 
 export const profileData = {
   contacts: [
-    { name: "이메일 (개인)", value: "me@mandu.com", icon: contact, link: "mailto:me@mandu.com" },
+    { name: "Email", value: "me@mandu.com", icon: contact, link: "mailto:me@mandu.com" },
     { name: "GitHub", value: "mandu5", icon: github, link: "https://github.com/mandu5" },
     { name: "LinkedIn", value: "in/mandu5", icon: linkedin, link: "https://www.linkedin.com/in/mandu5/" },
   ],
   services: [
-    { name: "블로그", value: "blog.mandu.com", icon: github, link: "https://blog.mandu.com" },
+    { name: "Blog", value: "blog.mandu.com", icon: github, link: "https://blog.mandu.com" },
     { name: "solved.ac", value: "solved.ac", icon: boj, link: "https://solved.ac/profile/mandu" },
   ],
   sns: [{ name: "X (Twitter)", value: "@mandu", icon: github, link: "https://twitter.com/mandu" }],
@@ -70,36 +172,14 @@ export const profileData = {
   games: {
     main: [
       {
-        name: "메이플스토리 (오로라)",
-        value: "싶프트 (Lv.279 아크)",
+        name: "Maplestory M (Scania)",
+        value: "만칸 (Lv.251 Kain)",
         icon: maple,
         link: "https://maplestory.nexon.com",
       },
     ],
-    other: [{ name: "기타 게임", value: "생각나는 대로 업데이트 예정입니다.", icon: github, link: "" }],
   },
 };
-
-export const projectsData: Project[] = [
-  {
-    title: "Next.js 14의 새로운 기능들",
-    theme: "btn-back-green",
-    name: "E-commerce Platform",
-    description: "A full-featured e-commerce platform built with Next.js and TypeScript",
-    image: "/assets/images/project1.jpg",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
-    link: "https://example.com",
-  },
-  {
-    title: "Next.js 14의 새로운 기능들",
-    theme: "btn-back-blue",
-    name: "Portfolio Website",
-    description: "A personal portfolio website showcasing my work and skills",
-    image: "/assets/images/project2.jpg",
-    tags: ["React", "Next.js", "Tailwind CSS"],
-    link: "https://example.com",
-  },
-];
 
 export const blogPosts: BlogPost[] = [
   {
