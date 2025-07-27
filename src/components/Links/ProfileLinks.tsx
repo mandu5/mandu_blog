@@ -57,7 +57,7 @@ const ProfileListItem: React.FC<ProfileListItemProps> = ({ item }) => {
   );
 
   return (
-    <li className="flex items-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+    <li className="flex items-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700">
       {item.link ? (
         <Link href={item.link} target="_blank" className="flex items-center w-full" title="External Link">
           {itemContent}

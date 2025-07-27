@@ -11,9 +11,9 @@ interface SocialLink {
 
 const Footer = () => {
   return (
-    <footer className="footer font-poppins border-t border-slate-200 bg-white mt-12">
+    <footer className="footer font-poppins border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-gray-900 mt-12">
       <div className="footer-container flex flex-col items-center gap-2 py-6">
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           © 2023 <strong>Mandu</strong>. All rights reserved.
         </p>
         <div className="flex gap-3 justify-center items-center">

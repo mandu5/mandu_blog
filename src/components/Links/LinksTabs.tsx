@@ -11,8 +11,7 @@ interface TabLinkProps {
 
 const TabLink: React.FC<TabLinkProps> = ({ href, isActive, children }) => {
   const getTabStyles = () => {
-    const baseStyles =
-      "min-w-[120px] text-center pb-2 text-lg font-bold tracking-wide border-b-2 transition-colors duration-200";
+    const baseStyles = "min-w-[120px] text-center pb-2 text-lg font-bold tracking-wide border-b-2";
     const activeStyles = isActive
       ? "border-black dark:border-white text-black dark:text-white"
       : "border-transparent text-gray-400 dark:text-gray-500";
@@ -32,7 +31,7 @@ const LinksTabs: React.FC = () => {
   const { t } = useLanguage();
 
   const tabs = [
-    { href: "/links", label: t("links.profile") },
+    { href: "/links", label: t("links.links") },
     { href: "/links/game", label: t("links.games") },
   ];
 

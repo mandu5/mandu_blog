@@ -46,7 +46,7 @@ const GameListItem: React.FC<GameListItemProps> = ({ item }) => {
   );
 
   return (
-    <li className="flex items-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+    <li className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
       {item.link ? (
         <a
           href={item.link}

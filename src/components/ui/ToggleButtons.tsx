@@ -8,20 +8,20 @@ const ToggleButtons = () => {
   const { language, toggleLanguage } = useLanguage();
 
   return (
-    <div className="fixed top-4 right-4 z-50 flex gap-2">
+    <div className="fixed top-20 right-4 z-40 flex gap-2">
       {/* Language Toggle Button */}
       <button
         onClick={toggleLanguage}
-        className="p-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-200"
+        className="p-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md"
         title={language === "ko" ? "Switch to English" : "한국어로 전환"}
       >
-        <span className="text-sm font-medium">{language === "ko" ? "EN" : "한"}</span>
+        <span className="text-sm font-medium">{language === "ko" ? "EN" : "KO"}</span>
       </button>
 
       {/* Theme Toggle Button */}
       <button
         onClick={toggleTheme}
-        className="p-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-200"
+        className="p-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md"
         title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
       >
         {theme === "light" ? (

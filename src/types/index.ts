@@ -73,6 +73,28 @@ export interface BlogPost {
   excerpt: string;
   slug: string;
   content?: string;
+  tags?: string[];
+  author?: {
+    name: string;
+    avatar: string;
+    followers: number;
+  };
+}
+
+export interface Comment {
+  id: string;
+  author: string;
+  content: string;
+  date: string;
+  avatar?: string;
+}
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar?: string;
+  isFollowing?: boolean;
 }
 
 // Language Types

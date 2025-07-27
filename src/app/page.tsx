@@ -6,7 +6,7 @@ const HomePage = () => {
   const { t } = useLanguage();
 
   return (
-    <main className="min-h-screen pt-20">
+    <main className="min-h-screen pt-20 overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="w-full h-screen relative overflow-hidden">
           <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">

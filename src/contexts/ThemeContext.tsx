@@ -32,6 +32,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const root = window.document.documentElement;
+    // 즉시 클래스 변경
     root.classList.remove("light", "dark");
     root.classList.add(theme);
     localStorage.setItem("theme", theme);

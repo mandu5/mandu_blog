@@ -43,7 +43,7 @@ const TRANSLATIONS = {
     "profile.otherActivities": "기타 활동",
 
     // Links sections
-    "links.profile": "프로필",
+    "links.links": "링크",
     "links.games": "게임",
     "links.contact": "연락처 및 링크",
     "links.sns": "SNS",
@@ -56,6 +56,21 @@ const TRANSLATIONS = {
 
     // Blog
     "blog.title": "블로그",
+    "blog.overview": "개요",
+    "blog.articles": "아티클",
+    "blog.activities": "2개의 활동",
+    "blog.activitiesCount": "2 activities in 2024",
+    "blog.less": "Less",
+    "blog.more": "더보기",
+    "blog.popularArticles": "인기 아티클",
+    "blog.recentArticles": "최신 아티클",
+    "blog.searchPlaceholder": "아티클을 검색해보세요",
+    "blog.sortLatest": "최신순",
+    "blog.sortPopular": "인기순",
+    "blog.sortOldest": "오래된순",
+    "blog.noResults": "검색 결과가 없습니다.",
+    "blog.showMore": "더보기",
+    "blog.showLess": "접기",
 
     // Common
     "common.email": "이메일",
@@ -95,7 +110,7 @@ const TRANSLATIONS = {
     "profile.otherActivities": "Other Activities",
 
     // Links sections
-    "links.profile": "Profile",
+    "links.links": "Links",
     "links.games": "Games",
     "links.contact": "Contact & Links",
     "links.sns": "SNS",
@@ -108,6 +123,21 @@ const TRANSLATIONS = {
 
     // Blog
     "blog.title": "Blog",
+    "blog.overview": "Overview",
+    "blog.articles": "Articles",
+    "blog.activities": "2 activities",
+    "blog.activitiesCount": "2 activities in 2024",
+    "blog.less": "Less",
+    "blog.more": "More",
+    "blog.popularArticles": "Popular Articles",
+    "blog.recentArticles": "Recent Articles",
+    "blog.searchPlaceholder": "Search articles...",
+    "blog.sortLatest": "Latest",
+    "blog.sortPopular": "Popular",
+    "blog.sortOldest": "Oldest",
+    "blog.noResults": "No results found.",
+    "blog.showMore": "More",
+    "blog.showLess": "Less",
 
     // Common
     "common.email": "Email",
