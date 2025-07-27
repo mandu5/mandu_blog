@@ -1,6 +1,7 @@
-export interface NavLink {
+// Navigation Types
+export interface NavigationLink {
   href: string;
-  label: string;
+  labelKey: string;
 }
 
 export interface SocialLink {
@@ -9,44 +10,87 @@ export interface SocialLink {
   link: string;
 }
 
-export interface CVItem {
+// Profile Types
+export interface ProfileItem {
+  name?: string;
+  nameKey?: string;
+  value: string;
+  icon?: string;
+  link?: string;
+}
+
+export interface GameItem extends ProfileItem {
+  code?: string;
+}
+
+// Education & Career Types
+export interface EducationItem {
+  institution: string;
+  degree: string;
+  period: string;
+  location: string;
+}
+
+export interface CareerItem {
+  company: string;
+  position: string;
+  period: string;
+  team?: string;
+  achievements: string[];
+}
+
+export interface CertificateItem {
   title: string;
-  subtitle?: string;
+  issuer: string;
   period: string;
   description?: string[];
-  location?: string;
 }
 
 export interface AwardItem {
   name: string;
   date: string;
-  desc: string;
-}
-
-export interface Project {
-  theme: string;
-  name: string;
   description: string;
-  link: string;
-  tags: string[];
-  image: string;
-  title: string;
-  period?: string;
 }
 
+// Project Types
+export interface Project {
+  id: string;
+  title: string;
+  organization: string;
+  description: string;
+  image: string;
+  tags: string[];
+  link: string;
+  period: string;
+  theme: "primary" | "secondary" | "accent";
+}
+
+// Blog Types
 export interface BlogPost {
+  id: string;
   title: string;
   date: string;
   excerpt: string;
   slug: string;
+  content?: string;
 }
 
-export interface ProfileItem {
-  name: string;
-  value: string;
-  icon?: string;
-  link?: string;
+// Language Types
+export type Language = "ko" | "en";
+
+// Theme Types
+export type Theme = "light" | "dark";
+
+// API Response Types
+export interface ApiResponse<T> {
+  data: T;
+  success: boolean;
+  message?: string;
 }
-export interface GameItem extends ProfileItem {
-  code?: string;
+
+// Form Types
+export interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
 }

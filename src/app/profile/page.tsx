@@ -1,123 +1,105 @@
-// src/app/cv/page.tsx
+"use client";
 import React from "react";
-import { educationData, careerData, awardsData, certificatesData, projectsData } from "@/constants";
+import { EDUCATION_DATA, CAREER_DATA, AWARDS_DATA, CERTIFICATES_DATA } from "@/constants";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-// 재사용 가능한 Section 컴포넌트
-const CVSection = ({ title, children }: { title: string; children: React.ReactNode }) => (
+interface ProfileSectionProps {
+  title: string;
+  children: React.ReactNode;
+}
+
+const ProfileSection: React.FC<ProfileSectionProps> = ({ title, children }) => (
   <section className="mb-10">
     <h2 className="text-2xl font-semibold mb-4">{title}</h2>
     {children}
   </section>
 );
 
-const CVPage = () => (
-  <div className="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="min-h-screen pt-20">
-      <h1 className="text-3xl font-bold mb-8 text-left">Profile</h1>
+const ProfilePage: React.FC = () => {
+  const { t } = useLanguage();
 
-      <CVSection title="Education">
-        <ul>
-          {educationData.map((edu) => (
-            <li key={edu.title} className="mb-4">
-              <div className="flex justify-between items-start">
-                <div>
-                  <div className="font-bold text-lg">{edu.title}</div>
-                  <div className="text-gray-600">{edu.subtitle}</div>
-                  {edu.location && <div className="text-gray-500 text-sm">{edu.location}</div>}
+  return (
+    <div className="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen pt-20">
+        <ProfileSection title={t("profile.education")}>
+          <ul className="space-y-4">
+            {EDUCATION_DATA.map((education) => (
+              <li key={education.institution} className="mb-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <div className="font-bold text-lg">{education.institution}</div>
+                    <div className="text-gray-600">{education.degree}</div>
+                    {education.location && <div className="text-gray-500 text-sm">{education.location}</div>}
+                  </div>
+                  <span className="text-gray-400 text-sm whitespace-nowrap">{education.period}</span>
                 </div>
-                <span className="text-gray-400 text-sm whitespace-nowrap">{edu.period}</span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </CVSection>
+              </li>
+            ))}
+          </ul>
+        </ProfileSection>
 
-      <CVSection title="Certificates & Programs">
-        <ul>
-          {certificatesData.map((cert) => (
-            <li key={cert.title} className="mb-6">
-              <div className="flex justify-between items-start">
-                <div>
-                  <div className="font-bold text-lg">{cert.title}</div>
-                  <div className="text-gray-600">{cert.subtitle}</div>
+        <ProfileSection title={t("profile.otherActivities")}>
+          <ul className="space-y-6">
+            {CERTIFICATES_DATA.map((certificate) => (
+              <li key={certificate.title} className="mb-6">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <div className="font-bold text-lg">{certificate.title}</div>
+                    <div className="text-gray-600">{certificate.issuer}</div>
+                  </div>
+                  <span className="text-gray-400 text-sm whitespace-nowrap">{certificate.period}</span>
                 </div>
-                <span className="text-gray-400 text-sm whitespace-nowrap">{cert.period}</span>
-              </div>
-              {cert.description && cert.description.length > 0 && (
-                <ul className="list-disc ml-6 text-gray-700 mt-2">
-                  {cert.description.map((d, i) => (
-                    <li key={i}>{d}</li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
-      </CVSection>
+                {certificate.description && certificate.description.length > 0 && (
+                  <ul className="list-disc ml-6 text-gray-700 mt-2 space-y-1">
+                    {certificate.description.map((description, index) => (
+                      <li key={index}>{description}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </ProfileSection>
 
-      <CVSection title="Experience">
-        <ul>
-          {careerData.map((job) => (
-            <li key={job.title} className="mb-6">
-              <div className="flex justify-between items-center">
-                <div>
-                  <span className="font-bold text-lg">{job.title}</span>
-                  {job.subtitle && <div className="text-gray-600 text-sm">{job.subtitle}</div>}
+        <ProfileSection title={t("profile.experience")}>
+          <ul className="space-y-6">
+            {CAREER_DATA.map((career) => (
+              <li key={career.company} className="mb-6">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <span className="font-bold text-lg">{career.company}</span>
+                    {career.position && <div className="text-gray-600 text-sm">{career.position}</div>}
+                  </div>
+                  <span className="text-gray-400 text-sm whitespace-nowrap">{career.period}</span>
                 </div>
-                <span className="text-gray-400 text-sm whitespace-nowrap">{job.period}</span>
-              </div>
-              {job.description && (
-                <ul className="list-disc ml-6 text-gray-700 mt-2">
-                  {job.description.map((d, i) => (
-                    <li key={i}>{d}</li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
-      </CVSection>
+                {career.achievements && career.achievements.length > 0 && (
+                  <ul className="list-disc ml-6 text-gray-700 mt-2 space-y-1">
+                    {career.achievements.map((achievement, index) => (
+                      <li key={index}>{achievement}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </ProfileSection>
 
-      <CVSection title="Projects">
-        <ul>
-          {projectsData.map((project) => (
-            <li key={project.title} className="mb-6">
-              <div className="flex justify-between items-start">
+        <ProfileSection title={t("profile.awards")}>
+          <ul className="space-y-2">
+            {AWARDS_DATA.map((award) => (
+              <li key={award.name} className="mb-2 flex justify-between items-center">
                 <div>
-                  <div className="font-bold text-lg">{project.title}</div>
-                  <div className="text-gray-600">{project.name}</div>
-                  {project.period && <div className="text-gray-500 text-sm">{project.period}</div>}
+                  <span className="font-bold">{award.name}</span>
+                  <div className="text-gray-700 text-sm">{award.description}</div>
                 </div>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800 underline text-sm"
-                >
-                  {project.link.includes("github.com") ? "Github" : "Link"}
-                </a>
-              </div>
-              <div className="text-gray-700 mt-2">{project.description}</div>
-            </li>
-          ))}
-        </ul>
-      </CVSection>
-
-      <CVSection title="Awards & Achievements">
-        <ul>
-          {awardsData.map((award) => (
-            <li key={award.name} className="mb-2 flex justify-between items-center">
-              <div>
-                <span className="font-bold">{award.name}</span>
-                <div className="text-gray-700 text-sm">{award.desc}</div>
-              </div>
-              <span className="text-gray-400 text-sm whitespace-nowrap">{award.date}</span>
-            </li>
-          ))}
-        </ul>
-      </CVSection>
+                <span className="text-gray-400 text-sm whitespace-nowrap">{award.date}</span>
+              </li>
+            ))}
+          </ul>
+        </ProfileSection>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
-export default CVPage;
+export default ProfilePage;

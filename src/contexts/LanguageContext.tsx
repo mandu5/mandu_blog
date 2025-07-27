@@ -1,7 +1,6 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
-
-type Language = "ko" | "en";
+import { Language } from "@/types";
 
 interface LanguageContextType {
   language: Language;
@@ -19,57 +18,119 @@ export const useLanguage = () => {
   return context;
 };
 
-const translations = {
+const TRANSLATIONS = {
   ko: {
+    // Home page
     "home.greeting": "안녕하세요, 저는",
     "home.name": "영민",
     "home.title": "AI 엔지니어입니다",
     "home.location": "대한민국에서 왔습니다",
+
+    // Navigation
     "nav.links": "링크",
     "nav.profile": "프로필",
     "nav.projects": "작업",
     "nav.blog": "블로그",
-    "about.profile": "프로필",
-    "about.games": "게임",
-    "about.contact": "대표 연락처/링크",
-    "about.services": "서비스",
-    "about.programming": "프로그래밍",
-    "about.design": "디자인",
-    "cv.education": "학력",
-    "cv.certificates": "자격증 및 프로그램",
-    "cv.experience": "경력",
-    "cv.projects": "프로젝트",
-    "cv.awards": "수상 및 출전",
+
+    // Profile sections
+    "profile.contact": "대표 연락처/링크",
+    "profile.programming": "프로그래밍",
+    "profile.games": "게임",
+    "profile.education": "학력",
+    "profile.certificates": "자격증 및 프로그램",
+    "profile.experience": "경력",
+    "profile.awards": "수상 및 출전",
+    "profile.otherActivities": "기타 활동",
+
+    // Links sections
+    "links.profile": "프로필",
+    "links.games": "게임",
+    "links.contact": "연락처 및 링크",
+    "links.sns": "SNS",
+    "links.programming": "프로그래밍",
+
+    // Projects
+    "projects.title": "프로젝트",
+    "projects.viewGithub": "GitHub에서 보기 →",
+    "projects.viewProject": "프로젝트 보기 →",
+
+    // Blog
+    "blog.title": "블로그",
+
+    // Common
+    "common.email": "이메일",
+    "common.github": "GitHub",
+    "common.linkedin": "LinkedIn",
+    "common.blog": "블로그",
+    "common.solvedAc": "solved.ac",
+    "common.baekjoon": "Baekjoon OJ",
+    "common.codeforces": "Codeforces",
+    "common.atcoder": "AtCoder",
+    "common.topcoder": "Topcoder",
+    "common.leetcode": "LeetCode",
+    "common.hackerrank": "HackerRank",
+    "common.maplestory": "메이플스토리 M (스카니아)",
   },
   en: {
+    // Home page
     "home.greeting": "Hi, I'm",
     "home.name": "Youngmin",
     "home.title": "AI Engineer",
     "home.location": "from South Korea",
+
+    // Navigation
     "nav.links": "Links",
     "nav.profile": "Profile",
     "nav.projects": "Projects",
     "nav.blog": "Blog",
-    "about.profile": "Profile",
-    "about.games": "Games",
-    "about.contact": "Contact & Links",
-    "about.services": "Services",
-    "about.programming": "Programming",
-    "about.design": "Design",
-    "cv.education": "Education",
-    "cv.certificates": "Certificates & Programs",
-    "cv.experience": "Experience",
-    "cv.projects": "Projects",
-    "cv.awards": "Awards & Achievements",
+
+    // Profile sections
+    "profile.contact": "Contact & Links",
+    "profile.programming": "Programming",
+    "profile.games": "Games",
+    "profile.education": "Education",
+    "profile.certificates": "Certificates & Programs",
+    "profile.experience": "Experience",
+    "profile.awards": "Awards & Achievements",
+    "profile.otherActivities": "Other Activities",
+
+    // Links sections
+    "links.profile": "Profile",
+    "links.games": "Games",
+    "links.contact": "Contact & Links",
+    "links.sns": "SNS",
+    "links.programming": "Programming",
+
+    // Projects
+    "projects.title": "Projects",
+    "projects.viewGithub": "View on Github →",
+    "projects.viewProject": "View Project →",
+
+    // Blog
+    "blog.title": "Blog",
+
+    // Common
+    "common.email": "Email",
+    "common.github": "GitHub",
+    "common.linkedin": "LinkedIn",
+    "common.blog": "Blog",
+    "common.solvedAc": "solved.ac",
+    "common.baekjoon": "Baekjoon OJ",
+    "common.codeforces": "Codeforces",
+    "common.atcoder": "AtCoder",
+    "common.topcoder": "Topcoder",
+    "common.leetcode": "LeetCode",
+    "common.hackerrank": "HackerRank",
+    "common.maplestory": "Maplestory M (Scania)",
   },
-};
+} as const;
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
   const [language, setLanguage] = useState<Language>("en");
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language") as Language;
-    if (savedLanguage) {
+    if (savedLanguage && (savedLanguage === "ko" || savedLanguage === "en")) {
       setLanguage(savedLanguage);
     }
   }, []);
@@ -83,7 +144,8 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   };
 
   const t = (key: string): string => {
-    return translations[language][key as keyof (typeof translations)[typeof language]] || key;
+    const translation = TRANSLATIONS[language][key as keyof (typeof TRANSLATIONS)[typeof language]];
+    return translation || key;
   };
 
   return <LanguageContext.Provider value={{ language, toggleLanguage, t }}>{children}</LanguageContext.Provider>;

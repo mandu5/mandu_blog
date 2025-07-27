@@ -6,6 +6,7 @@ import Header from "../components/layout/Header";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import ToggleButtons from "@/components/ui/ToggleButtons";
+import { siteConfig } from "@/config/site";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -21,7 +22,16 @@ export const metadata: Metadata = {
     template: "%s | mandu5",
   },
   description: "Personal portfolio website of Youngmin, a Software Developer from South Korea",
-  keywords: ["portfolio", "developer", "software engineer", "web development", "frontend", "backend"],
+  keywords: [
+    "portfolio",
+    "developer",
+    "software engineer",
+    "web development",
+    "frontend",
+    "backend",
+    "AI engineer",
+    "machine learning",
+  ],
   authors: [{ name: "Youngmin" }],
   openGraph: {
     type: "website",
@@ -58,14 +68,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport = {
-  width: "device-width",
-  initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-  ],
-};
+export const viewport = siteConfig.viewport;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
