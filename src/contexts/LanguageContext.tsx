@@ -6,6 +6,7 @@ interface LanguageContextType {
   language: Language;
   toggleLanguage: () => void;
   t: (key: string) => string;
+  isLoaded: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -71,6 +72,9 @@ const TRANSLATIONS = {
     "blog.noResults": "검색 결과가 없습니다.",
     "blog.showMore": "더보기",
     "blog.showLess": "접기",
+
+    // Footer
+    "footer.rights": "All rights reserved.",
 
     // Common
     "common.email": "이메일",
@@ -139,6 +143,9 @@ const TRANSLATIONS = {
     "blog.showMore": "More",
     "blog.showLess": "Less",
 
+    // Footer
+    "footer.rights": "All rights reserved.",
+
     // Common
     "common.email": "Email",
     "common.github": "GitHub",
@@ -157,17 +164,26 @@ const TRANSLATIONS = {
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
   const [language, setLanguage] = useState<Language>("en");
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    // SSR 안전성을 위한 체크
+    if (typeof window === "undefined") return;
+
     const savedLanguage = localStorage.getItem("language") as Language;
     if (savedLanguage && (savedLanguage === "ko" || savedLanguage === "en")) {
       setLanguage(savedLanguage);
     }
+    setIsLoaded(true);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("language", language);
-  }, [language]);
+    if (!isLoaded) return;
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem("language", language);
+    }
+  }, [language, isLoaded]);
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "ko" ? "en" : "ko"));
@@ -178,5 +194,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     return translation || key;
   };
 
-  return <LanguageContext.Provider value={{ language, toggleLanguage, t }}>{children}</LanguageContext.Provider>;
+  return (
+    <LanguageContext.Provider value={{ language, toggleLanguage, t, isLoaded }}>{children}</LanguageContext.Provider>
+  );
 };
