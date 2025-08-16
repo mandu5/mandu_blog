@@ -94,7 +94,7 @@ const TRANSLATIONS = {
     // Home page
     "home.greeting": "Hi, I'm",
     "home.name": "Youngmin",
-    "home.title": "AI Engineer",
+    "home.title": "Software Engineer",
     "home.location": "from South Korea",
 
     // Navigation

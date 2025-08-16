@@ -340,3 +340,16 @@ export function editComment(postId: string, commentId: string, newContent: strin
     return false;
   }
 }
+
+// 댓글 수 가져오기
+export function getCommentCount(postId: string): number {
+  if (typeof window === "undefined") return 0;
+
+  try {
+    const comments = getComments(postId);
+    return comments.length;
+  } catch (error) {
+    console.error("Failed to get comment count:", error);
+    return 0;
+  }
+}

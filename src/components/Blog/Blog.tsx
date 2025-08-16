@@ -4,7 +4,7 @@ import Link from "next/link";
 import { BLOG_POSTS_DATA } from "@/constants";
 import { BlogPost } from "@/types";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { getLikeCount, toggleLike, isLikedByUser, formatRelativeDate } from "@/lib/utils";
+import { getLikeCount, toggleLike, isLikedByUser, formatRelativeDate, getCommentCount } from "@/lib/utils";
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -12,14 +12,34 @@ interface BlogPostCardProps {
 
 const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
   const [likeCount, setLikeCount] = useState(0);
+  const [commentCount, setCommentCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
     setLikeCount(getLikeCount(post.id));
+    setCommentCount(getCommentCount(post.id));
     setIsLiked(isLikedByUser(post.id));
   }, [post.id]);
+
+  // 댓글 수와 좋아요 수를 주기적으로 업데이트
+  useEffect(() => {
+    if (!isClient) return;
+
+    const updateCounts = () => {
+      setLikeCount(getLikeCount(post.id));
+      setCommentCount(getCommentCount(post.id));
+    };
+
+    // 초기 업데이트
+    updateCounts();
+
+    // 주기적 업데이트 (1초마다)
+    const interval = setInterval(updateCounts, 1000);
+
+    return () => clearInterval(interval);
+  }, [post.id, isClient]);
 
   const handleLike = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -49,7 +69,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
               <span className="text-lg">💬</span>
               <span>0</span>
             </div>
-            <span>2 months ago</span>
+            <span>{formatRelativeDate(post.date)}</span>
           </div>
         </div>
       </article>
@@ -75,7 +95,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
           </button>
           <div className="flex items-center gap-1">
             <span className="text-lg">💬</span>
-            <span>0</span>
+            <span>{commentCount}</span>
           </div>
           <span>{formatRelativeDate(post.date)}</span>
         </div>
@@ -102,6 +122,18 @@ const Blog: React.FC = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Overview 섹션의 댓글 수와 좋아요 수를 주기적으로 업데이트하기 위한 강제 리렌더링
+  useEffect(() => {
+    if (!isClient) return;
+
+    const interval = setInterval(() => {
+      // 강제 리렌더링을 위해 상태를 업데이트
+      setSearchQuery(prev => prev);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isClient]);
 
   // 선택된 연도의 활동 수 계산
   const getActivityCount = () => {
@@ -408,7 +440,7 @@ const Blog: React.FC = () => {
                             </div>
                             <div className="flex items-center gap-1">
                               <span>💬</span>
-                              <span>0</span>
+                              <span>{isClient ? getCommentCount(post.id) : 0}</span>
                             </div>
                             <span>{formatRelativeDate(post.date)}</span>
                           </div>
@@ -456,7 +488,7 @@ const Blog: React.FC = () => {
                             </div>
                             <div className="flex items-center gap-1">
                               <span>💬</span>
-                              <span>0</span>
+                              <span>{isClient ? getCommentCount(post.id) : 0}</span>
                             </div>
                             <span>{formatRelativeDate(post.date)}</span>
                           </div>
