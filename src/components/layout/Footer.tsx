@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { SOCIAL_LINKS } from "@/constants";
@@ -27,7 +28,7 @@ const Footer = () => {
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                 aria-label={social.name}
               >
-                <img src={social.icon} alt={social.name} className="w-5 h-5" />
+                <Image src={social.icon} alt={social.name} width={20} height={20} />
               </a>
             ))}
           </div>

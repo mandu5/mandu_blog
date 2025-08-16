@@ -1,16 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { BLOG_POSTS_DATA } from "@/constants";
-import { BlogPost, Comment } from "@/types";
-import { useLanguage } from "@/contexts/LanguageContext";
-import Image from "next/image";
 import Link from "next/link";
 import {
   toggleLike,
   getLikeCount,
   isLikedByUser,
   canComment,
-  addComment,
   saveComment,
   getComments,
   deleteComment,
@@ -19,6 +15,8 @@ import {
   CommentData,
   formatRelativeDate,
   formatCompactDate,
+  setCommentRateLimit,
+  COMMENT_RATE_LIMIT_KEY,
 } from "@/lib/utils";
 
 interface BlogPostPageProps {
@@ -28,7 +26,6 @@ interface BlogPostPageProps {
 }
 
 const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
-  const { t } = useLanguage();
   const [comments, setComments] = useState<CommentData[]>([]);
   const [newComment, setNewComment] = useState("");
   const [commentAuthor, setCommentAuthor] = useState("");
@@ -42,6 +39,8 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
   const [deleteCommentId, setDeleteCommentId] = useState<string | null>(null);
   const [deletePassword, setDeletePassword] = useState("");
   const [isClient, setIsClient] = useState(false);
+  const [canCommentNow, setCanCommentNow] = useState(true);
+  const [remainingTime, setRemainingTime] = useState(0);
 
   const post = BLOG_POSTS_DATA.find((p) => p.slug === params.slug);
 
@@ -52,7 +51,44 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
       setIsLiked(isLikedByUser(post.id));
       setComments(getComments(post.id));
     }
-  }, [post?.id]);
+  }, [post]);
+
+  // 댓글 제한 상태를 주기적으로 확인
+  useEffect(() => {
+    if (!isClient) return;
+
+    const checkCommentLimit = () => {
+      const canCommentStatus = canComment();
+      setCanCommentNow(canCommentStatus);
+
+      if (!canCommentStatus) {
+        // 남은 시간 계산
+        try {
+          const rateLimitData = localStorage.getItem(COMMENT_RATE_LIMIT_KEY);
+          if (rateLimitData) {
+            const data = JSON.parse(rateLimitData);
+            const now = Date.now();
+            const thirtyMinutes = 30 * 60 * 1000;
+            const elapsed = now - data.timestamp;
+            const remaining = Math.max(0, thirtyMinutes - elapsed);
+            setRemainingTime(Math.ceil(remaining / 1000 / 60)); // 분 단위로 변환
+          }
+        } catch (error) {
+          console.error("Failed to calculate remaining time:", error);
+        }
+      } else {
+        setRemainingTime(0);
+      }
+    };
+
+    // 초기 확인
+    checkCommentLimit();
+
+    // 1초마다 확인
+    const interval = setInterval(checkCommentLimit, 1000);
+
+    return () => clearInterval(interval);
+  }, [isClient]);
 
   if (!post) {
     return (
@@ -96,6 +132,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
     };
 
     saveComment(comment);
+    setCommentRateLimit(); // 댓글 작성 후 제한 설정
     setComments([...comments, comment]);
     setNewComment("");
     setCommentAuthor("");
@@ -146,14 +183,12 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
     const lines = content.split("\n");
     let inCodeBlock = false;
     let codeBlockContent = "";
-    let codeLanguage = "";
 
     return lines.map((line, index) => {
       if (line.startsWith("```")) {
         if (!inCodeBlock) {
           inCodeBlock = true;
           codeBlockContent = "";
-          codeLanguage = line.substring(3).trim();
           return null;
         } else {
           inCodeBlock = false;
@@ -352,10 +387,23 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
                 />
                 {commentError && <p className="text-red-400 text-sm mt-2">{commentError}</p>}
                 <div className="flex justify-between items-center mt-4">
-                  <p className="text-sm text-gray-400">30분에 한 번만 댓글을 작성할 수 있습니다.</p>
+                  <div className="text-sm text-gray-400">
+                    {canCommentNow ? (
+                      "30분에 한 번만 댓글을 작성할 수 있습니다."
+                    ) : (
+                      <span className="text-red-400">
+                        댓글 작성 제한 중... {remainingTime}분 후에 다시 시도해주세요.
+                      </span>
+                    )}
+                  </div>
                   <button
                     onClick={handleCommentSubmit}
-                    className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700"
+                    disabled={!canCommentNow}
+                    className={`px-6 py-2 rounded-full ${
+                      canCommentNow
+                        ? "bg-blue-600 text-white hover:bg-blue-700"
+                        : "bg-gray-600 text-gray-400 cursor-not-allowed"
+                    }`}
                   >
                     댓글 작성
                   </button>

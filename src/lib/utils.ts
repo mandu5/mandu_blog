@@ -119,7 +119,7 @@ export function formatFileSize(bytes: number): string {
 
 // 로컬 스토리지 기반 좋아요 시스템
 const LIKED_POSTS_KEY = "liked_posts";
-const COMMENT_RATE_LIMIT_KEY = "comment_rate_limit";
+export const COMMENT_RATE_LIMIT_KEY = "comment_rate_limit";
 
 interface RateLimitData {
   timestamp: number;
@@ -218,16 +218,6 @@ export function setCommentRateLimit(): void {
   } catch (error) {
     console.error("Failed to set comment rate limit:", error);
   }
-}
-
-// 댓글 작성
-export function addComment(postId: string, comment: string): boolean {
-  if (!canComment()) {
-    return false;
-  }
-
-  setCommentRateLimit();
-  return true;
 }
 
 // 댓글 수정/삭제를 위한 비밀번호 해시 생성
