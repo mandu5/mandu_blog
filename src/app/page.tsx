@@ -3,7 +3,6 @@ import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BLOG_POSTS_DATA, PROJECTS_DATA } from "@/constants";
 import Link from "next/link";
-import Image from "next/image";
 
 const HomePage = () => {
   const { t, language } = useLanguage();
