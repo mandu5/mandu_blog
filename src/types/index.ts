@@ -1,13 +1,13 @@
 // Navigation Types
 export interface NavigationLink {
   href: string;
-  labelKey: string;
+  label: string;
 }
 
 export interface SocialLink {
   name: string;
   icon: string;
-  link: string;
+  url: string;
 }
 
 // Profile Types

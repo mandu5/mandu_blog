@@ -27,10 +27,10 @@ const ICONS = {
 
 // Navigation Configuration
 export const NAVIGATION_LINKS: NavigationLink[] = [
-  { href: "/links", labelKey: "nav.links" },
-  { href: "/profile", labelKey: "nav.profile" },
-  { href: "/projects", labelKey: "nav.projects" },
-  { href: "/blog", labelKey: "nav.blog" },
+  { href: "/links", label: "Links" },
+  { href: "/profile", label: "Profile" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
 ];
 
 // Social Links Configuration
@@ -38,17 +38,17 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: "Contact",
     icon: ICONS.CONTACT,
-    link: "mailto:rhdudals0505@naver.com",
+    url: "mailto:rhdudals0505@naver.com",
   },
   {
     name: "GitHub",
     icon: ICONS.GITHUB,
-    link: "https://github.com/mandu5",
+    url: "https://github.com/mandu5",
   },
   {
     name: "LinkedIn",
     icon: ICONS.LINKEDIN,
-    link: "https://www.linkedin.com/in/mandu5",
+    url: "https://www.linkedin.com/in/mandu5",
   },
 ];
 

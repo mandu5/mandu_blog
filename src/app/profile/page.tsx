@@ -1,105 +1,126 @@
 "use client";
 import React from "react";
 import { EDUCATION_DATA, CAREER_DATA, AWARDS_DATA, CERTIFICATES_DATA } from "@/constants";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ProfileSectionProps {
   title: string;
   children: React.ReactNode;
 }
 
-const ProfileSection: React.FC<ProfileSectionProps> = ({ title, children }) => (
-  <section className="mb-10">
-    <h2 className="text-2xl font-semibold mb-4">{title}</h2>
-    {children}
-  </section>
-);
-
-const ProfilePage: React.FC = () => {
-  const { t } = useLanguage();
-
+function ProfileSection({ title, children }: ProfileSectionProps) {
   return (
-    <div className="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="min-h-screen pt-20">
-        <ProfileSection title={t("profile.education")}>
-          <ul className="space-y-4">
-            {EDUCATION_DATA.map((education) => (
-              <li key={education.institution} className="mb-4">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <div className="font-bold text-lg">{education.institution}</div>
-                    <div className="text-gray-600">{education.degree}</div>
-                    {education.location && <div className="text-gray-500 text-sm">{education.location}</div>}
-                  </div>
-                  <span className="text-gray-400 text-sm whitespace-nowrap">{education.period}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
+    <section className="mb-12">
+      <h2 className="text-3xl font-bold text-white mb-8 text-center">{title}</h2>
+      <div className="space-y-6">{children}</div>
+    </section>
+  );
+}
+
+interface ProfileItemProps {
+  title: string;
+  subtitle?: string;
+  period: string;
+  location?: string;
+  description?: string[];
+  organization?: string;
+  achievements?: string[];
+}
+
+function ProfileItem({ title, subtitle, period, location, description, organization, achievements }: ProfileItemProps) {
+  return (
+    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white border border-white/20 hover:bg-white/20 transition-all duration-500">
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+        <div className="flex-1">
+          <h3 className="text-xl font-bold mb-2">{title}</h3>
+          {subtitle && <p className="text-lg text-white/80 mb-2">{subtitle}</p>}
+          {organization && <p className="text-lg text-white/80 mb-2">{organization}</p>}
+        </div>
+        <div className="text-right mt-2 md:mt-0">
+          <p className="text-sm text-white/70">{period}</p>
+          {location && <p className="text-sm text-white/70">{location}</p>}
+        </div>
+      </div>
+
+      {description && description.length > 0 && (
+        <ul className="list-disc list-inside space-y-2 text-white/80">
+          {description.map((item, index) => (
+            <li key={index} className="text-sm">
+              {item}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {achievements && achievements.length > 0 && (
+        <ul className="list-disc list-inside space-y-2 text-white/80">
+          {achievements.map((achievement, index) => (
+            <li key={index} className="text-sm">
+              {achievement}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export default function ProfilePage() {
+  return (
+    <div className="min-h-screen py-20 px-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-bold text-white mb-6">Profile</h1>
+          <p className="text-xl text-white/80">
+            AI Engineer & Developer with expertise in machine learning and web development
+          </p>
+        </div>
+
+        {/* Education */}
+        <ProfileSection title="Education">
+          {EDUCATION_DATA.map((item, index) => (
+            <ProfileItem
+              key={index}
+              title={item.degree}
+              subtitle={item.institution}
+              period={item.period}
+              location={item.location}
+            />
+          ))}
         </ProfileSection>
 
-        <ProfileSection title={t("profile.otherActivities")}>
-          <ul className="space-y-6">
-            {CERTIFICATES_DATA.map((certificate) => (
-              <li key={certificate.title} className="mb-6">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <div className="font-bold text-lg">{certificate.title}</div>
-                    <div className="text-gray-600">{certificate.issuer}</div>
-                  </div>
-                  <span className="text-gray-400 text-sm whitespace-nowrap">{certificate.period}</span>
-                </div>
-                {certificate.description && certificate.description.length > 0 && (
-                  <ul className="list-disc ml-6 text-gray-700 mt-2 space-y-1">
-                    {certificate.description.map((description, index) => (
-                      <li key={index}>{description}</li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
+        {/* Career */}
+        <ProfileSection title="Career">
+          {CAREER_DATA.map((item, index) => (
+            <ProfileItem
+              key={index}
+              title={item.position}
+              organization={item.company}
+              period={item.period}
+              achievements={item.achievements}
+            />
+          ))}
         </ProfileSection>
 
-        <ProfileSection title={t("profile.experience")}>
-          <ul className="space-y-6">
-            {CAREER_DATA.map((career) => (
-              <li key={career.company} className="mb-6">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <span className="font-bold text-lg">{career.company}</span>
-                    {career.position && <div className="text-gray-600 text-sm">{career.position}</div>}
-                  </div>
-                  <span className="text-gray-400 text-sm whitespace-nowrap">{career.period}</span>
-                </div>
-                {career.achievements && career.achievements.length > 0 && (
-                  <ul className="list-disc ml-6 text-gray-700 mt-2 space-y-1">
-                    {career.achievements.map((achievement, index) => (
-                      <li key={index}>{achievement}</li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
+        {/* Awards */}
+        <ProfileSection title="Awards">
+          {AWARDS_DATA.map((item, index) => (
+            <ProfileItem key={index} title={item.name} period={item.date} description={[item.description]} />
+          ))}
         </ProfileSection>
 
-        <ProfileSection title={t("profile.awards")}>
-          <ul className="space-y-2">
-            {AWARDS_DATA.map((award) => (
-              <li key={award.name} className="mb-2 flex justify-between items-center">
-                <div>
-                  <span className="font-bold">{award.name}</span>
-                  <div className="text-gray-700 text-sm">{award.description}</div>
-                </div>
-                <span className="text-gray-400 text-sm whitespace-nowrap">{award.date}</span>
-              </li>
-            ))}
-          </ul>
+        {/* Certificates */}
+        <ProfileSection title="Certificates">
+          {CERTIFICATES_DATA.map((item, index) => (
+            <ProfileItem
+              key={index}
+              title={item.title}
+              organization={item.issuer}
+              period={item.period}
+              description={item.description}
+            />
+          ))}
         </ProfileSection>
       </div>
     </div>
   );
-};
-
-export default ProfilePage;
+}
