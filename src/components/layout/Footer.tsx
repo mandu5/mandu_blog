@@ -2,14 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { SOCIAL_LINKS } from "@/constants";
 
 export default function Footer() {
-  const pathname = usePathname();
-  const { t, language, toggleLanguage } = useLanguage();
+  const { language, toggleLanguage } = useLanguage();
   const { theme, toggleTheme } = useTheme();
 
   return (

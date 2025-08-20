@@ -105,8 +105,6 @@ function ProjectCard({ project, index }: ProjectCardProps) {
 }
 
 export default function Projects() {
-  const { t } = useLanguage();
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {PROJECTS_DATA.map((project, index) => (

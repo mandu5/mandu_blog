@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { PROJECTS_DATA } from "@/constants";
 import BuildingIllustrations from "@/components/ui/BuildingIllustrations";
 
 export default function HomePage() {

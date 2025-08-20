@@ -135,7 +135,7 @@ export default function AboutPage() {
                 <h3 className="text-lg font-bold text-white mb-2">{certificate.title}</h3>
                 <p className="text-primary-mint font-medium mb-2">{certificate.issuer}</p>
                 <p className="text-white/60 text-sm mb-3">{certificate.period}</p>
-                {certificate.description.length > 0 && (
+                {certificate.description && certificate.description.length > 0 && (
                   <ul className="space-y-1">
                     {certificate.description.map((desc, descIndex) => (
                       <li key={descIndex} className="text-white/70 text-xs flex items-start">

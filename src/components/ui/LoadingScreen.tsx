@@ -1,11 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTheme } from "@/contexts/ThemeContext";
 
 export default function LoadingScreen() {
   const [isLoading, setIsLoading] = useState(true);
-  const { theme } = useTheme();
 
   useEffect(() => {
     const timer = setTimeout(() => {
