@@ -129,7 +129,7 @@ const Blog: React.FC = () => {
 
     const interval = setInterval(() => {
       // 강제 리렌더링을 위해 상태를 업데이트
-      setSearchQuery(prev => prev);
+      setSearchQuery((prev) => prev);
     }, 1000);
 
     return () => clearInterval(interval);

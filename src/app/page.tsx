@@ -113,7 +113,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-slide-up">{t("home.title")}</h1>
           <p className="text-xl md:text-2xl text-white/80 mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-            AI Engineer / Developer
+            AI Engineer / Software Developer
           </p>
 
           {/* Tech Stack Indicators */}
