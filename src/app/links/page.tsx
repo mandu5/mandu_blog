@@ -1,19 +1,22 @@
 "use client";
 import React from "react";
 import { PROFILE_DATA } from "@/constants";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function LinksPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-white mb-6">Links</h1>
-          <p className="text-xl text-white/80">Connect with me through various platforms</p>
+          <h1 className="text-5xl font-bold text-white mb-6">{t("links.links")}</h1>
+          <p className="text-xl text-white/80">{t("home.linksDescription")}</p>
         </div>
 
         {/* Contact Information */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">Contact</h2>
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">{t("links.contact")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PROFILE_DATA.contacts.map((contact) => (
               <a
@@ -24,13 +27,7 @@ export default function LinksPage() {
                 <div className="text-2xl mb-3">
                   {contact.nameKey === "common.email" ? "📧" : contact.nameKey === "common.github" ? "🐙" : "💼"}
                 </div>
-                <h3 className="font-bold mb-2">
-                  {contact.nameKey === "common.email"
-                    ? "Email"
-                    : contact.nameKey === "common.github"
-                    ? "GitHub"
-                    : "LinkedIn"}
-                </h3>
+                <h3 className="font-bold mb-2">{t(contact.nameKey)}</h3>
                 <p className="text-sm opacity-80">{contact.value}</p>
               </a>
             ))}
@@ -39,7 +36,7 @@ export default function LinksPage() {
 
         {/* Programming Platforms */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">Programming</h2>
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">{t("links.programming")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PROFILE_DATA.programming.map((platform) => (
               <a
@@ -64,21 +61,7 @@ export default function LinksPage() {
                     ? "💻"
                     : "🔧"}
                 </div>
-                <h3 className="font-bold mb-2">
-                  {platform.nameKey === "common.solvedAc"
-                    ? "Solved.ac"
-                    : platform.nameKey === "common.baekjoon"
-                    ? "Baekjoon"
-                    : platform.nameKey === "common.codeforces"
-                    ? "Codeforces"
-                    : platform.nameKey === "common.atcoder"
-                    ? "AtCoder"
-                    : platform.nameKey === "common.topcoder"
-                    ? "TopCoder"
-                    : platform.nameKey === "common.leetcode"
-                    ? "LeetCode"
-                    : "HackerRank"}
-                </h3>
+                <h3 className="font-bold mb-2">{t(platform.nameKey)}</h3>
                 <p className="text-sm opacity-80">{platform.value}</p>
               </a>
             ))}
@@ -87,7 +70,7 @@ export default function LinksPage() {
 
         {/* Games */}
         <section>
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">Games</h2>
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">{t("links.games")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PROFILE_DATA.games.main.map((game) => (
               <a

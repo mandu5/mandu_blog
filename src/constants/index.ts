@@ -27,10 +27,11 @@ const ICONS = {
 
 // Navigation Configuration
 export const NAVIGATION_LINKS: NavigationLink[] = [
-  { href: "/links", label: "Links" },
-  { href: "/profile", label: "Profile" },
-  { href: "/projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
+  { href: "/", label: "navigation.home" },
+  { href: "/links", label: "navigation.links" },
+  { href: "/about", label: "navigation.about" },
+  { href: "/projects", label: "navigation.projects" },
+  { href: "/blog", label: "navigation.blog" },
 ];
 
 // Social Links Configuration

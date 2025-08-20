@@ -1,51 +1,47 @@
+"use client";
+
+import { useLanguage } from "@/contexts/LanguageContext";
 import { PROJECTS_DATA } from "@/constants";
+import Projects from "@/components/Projects/Projects";
 
 export default function ProjectsPage() {
+  const { t } = useLanguage();
+
   return (
-    <div className="min-h-screen py-20 px-4">
+    <div className="min-h-screen pt-20 pb-16 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-white mb-6">Projects</h1>
-          <p className="text-xl text-white/80">Showcase of my latest projects in AI and web development</p>
-        </div>
+        {/* Header Section */}
+        <section className="mb-16 animate-fade-in">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-slide-up">
+              {t("projects.title")}
+            </h1>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto animate-slide-up" style={{ animationDelay: "0.2s" }}>
+              {t("projects.subtitle")}
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS_DATA.map((project) => (
-            <div
-              key={project.id}
-              className="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden text-white border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-105"
-            >
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold">{project.title}</h3>
-                  <span className="text-xs bg-white/20 px-2 py-1 rounded-full">{project.organization}</span>
-                </div>
-
-                <p className="text-sm opacity-80 mb-4 line-clamp-3">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="px-2 py-1 bg-white/20 rounded-full text-xs">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-xs opacity-60">{project.period}</span>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-4 py-2 bg-white/20 rounded-lg text-sm hover:bg-white/30 transition-colors"
-                  >
-                    View Project
-                  </a>
-                </div>
-              </div>
+          {/* Project Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 animate-slide-up" style={{ animationDelay: "0.4s" }}>
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 text-center">
+              <div className="text-3xl font-bold text-primary-mint mb-2">{PROJECTS_DATA.length}</div>
+              <div className="text-white/80">{t("projects.totalProjects")}</div>
             </div>
-          ))}
-        </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 text-center">
+              <div className="text-3xl font-bold text-primary-mint mb-2">5+</div>
+              <div className="text-white/80">{t("projects.technologies")}</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 text-center">
+              <div className="text-3xl font-bold text-primary-mint mb-2">100%</div>
+              <div className="text-white/80">{t("projects.successRate")}</div>
+            </div>
+          </div>
+        </section>
+
+        {/* Projects Grid */}
+        <section className="animate-slide-up" style={{ animationDelay: "0.6s" }}>
+          <Projects />
+        </section>
       </div>
     </div>
   );

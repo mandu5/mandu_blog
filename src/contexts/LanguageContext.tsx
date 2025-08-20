@@ -22,16 +22,42 @@ export const useLanguage = () => {
 const TRANSLATIONS = {
   ko: {
     // Home page
-    "home.greeting": "안녕하세요, 저는",
-    "home.name": "영민",
-    "home.title": "AI 엔지니어입니다",
-    "home.location": "대한민국에서 왔습니다",
+    "home.title": "MANDU",
+    "home.subtitle": "AI Engineer / Developer / Problem Solver",
+    "home.viewResume": "이력서 보기",
+    "home.viewProjects": "프로젝트 보기",
+    "home.aboutDescription": "머신러닝 개발자로서의 경력과 기술을 확인하세요",
+    "home.projectsDescription": "혁신적인 AI 프로젝트들과 기술적 성과를 살펴보세요",
+    "home.blogDescription": "AI와 기술에 대한 인사이트와 경험을 공유합니다",
+    "home.linksDescription": "다양한 플랫폼과 소셜 미디어에서 저를 만나보세요",
+    "home.contactDescription": "프로젝트 협업이나 문의사항이 있으시면 연락주세요",
+
+    // About page
+    "about.title": "About Me",
+    "about.subtitle": "AI Engineer & Machine Learning Developer with passion for innovation",
+    "about.summary": "Professional Summary",
+    "about.summaryText": "Experienced AI Engineer specializing in machine learning, deep learning, and full-stack development. Passionate about creating innovative solutions that solve real-world problems through cutting-edge technology.",
+    "about.skills": "Technical Skills",
+    "about.education": "Education",
+    "about.experience": "Experience",
+    "about.certificates": "Certificates & Programs",
+    "about.awards": "Awards & Achievements",
+
+    // Projects
+    "projects.subtitle": "Showcase of innovative AI projects and technical achievements",
+    "projects.totalProjects": "Total Projects",
+    "projects.technologies": "Technologies",
+    "projects.successRate": "Success Rate",
+    "projects.period": "Period",
+    "projects.role": "Role",
 
     // Navigation
-    "nav.links": "링크",
-    "nav.profile": "프로필",
-    "nav.projects": "작업",
-    "nav.blog": "블로그",
+    "navigation.home": "홈",
+    "navigation.links": "링크",
+    "navigation.about": "소개",
+    "navigation.projects": "프로젝트",
+    "navigation.blog": "블로그",
+    "navigation.contact": "연락처",
 
     // Profile sections
     "profile.contact": "대표 연락처/링크",
@@ -74,6 +100,7 @@ const TRANSLATIONS = {
     "blog.showLess": "접기",
 
     // Footer
+    "footer.language": "KO",
     "footer.rights": "All rights reserved.",
 
     // Common
@@ -92,16 +119,42 @@ const TRANSLATIONS = {
   },
   en: {
     // Home page
-    "home.greeting": "Hi, I'm",
-    "home.name": "Youngmin",
-    "home.title": "Software Engineer",
-    "home.location": "from South Korea",
+    "home.title": "MANDU",
+    "home.subtitle": "AI Engineer / Developer / Problem Solver",
+    "home.viewResume": "View Resume",
+    "home.viewProjects": "View Projects",
+    "home.aboutDescription": "Explore my career and skills as a machine learning developer",
+    "home.projectsDescription": "Discover innovative AI projects and technical achievements",
+    "home.blogDescription": "Share insights and experiences about AI and technology",
+    "home.linksDescription": "Connect with me across various platforms and social media",
+    "home.contactDescription": "Get in touch for project collaboration or inquiries",
+
+    // About page
+    "about.title": "About Me",
+    "about.subtitle": "AI Engineer & Machine Learning Developer with passion for innovation",
+    "about.summary": "Professional Summary",
+    "about.summaryText": "Experienced AI Engineer specializing in machine learning, deep learning, and full-stack development. Passionate about creating innovative solutions that solve real-world problems through cutting-edge technology.",
+    "about.skills": "Technical Skills",
+    "about.education": "Education",
+    "about.experience": "Experience",
+    "about.certificates": "Certificates & Programs",
+    "about.awards": "Awards & Achievements",
+
+    // Projects
+    "projects.subtitle": "Showcase of innovative AI projects and technical achievements",
+    "projects.totalProjects": "Total Projects",
+    "projects.technologies": "Technologies",
+    "projects.successRate": "Success Rate",
+    "projects.period": "Period",
+    "projects.role": "Role",
 
     // Navigation
-    "nav.links": "Links",
-    "nav.profile": "Profile",
-    "nav.projects": "Projects",
-    "nav.blog": "Blog",
+    "navigation.home": "Home",
+    "navigation.links": "Links",
+    "navigation.about": "About",
+    "navigation.projects": "Projects",
+    "navigation.blog": "Blog",
+    "navigation.contact": "Contact",
 
     // Profile sections
     "profile.contact": "Contact & Links",
@@ -144,6 +197,7 @@ const TRANSLATIONS = {
     "blog.showLess": "Less",
 
     // Footer
+    "footer.language": "EN",
     "footer.rights": "All rights reserved.",
 
     // Common

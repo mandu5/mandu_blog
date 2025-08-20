@@ -1,170 +1,224 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { PROJECTS_DATA } from "@/constants";
 import BuildingIllustrations from "@/components/ui/BuildingIllustrations";
 
 export default function HomePage() {
-  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
-  const [collapsedBuildings, setCollapsedBuildings] = useState<string[]>([]);
+  const { t } = useLanguage();
+  const [hoveredBuilding, setHoveredBuilding] = useState<string | null>(null);
+  const [collapsedBuildings, setCollapsedBuildings] = useState<Set<string>>(new Set());
 
   const sections = [
     {
       id: "about",
-      title: "About",
+      title: t("navigation.about"),
+      description: t("home.aboutDescription"),
       icon: "👁️",
-      color: "from-blue-400 to-cyan-400",
+      href: "/about",
     },
     {
       id: "projects",
-      title: "Projects",
+      title: t("navigation.projects"),
+      description: t("home.projectsDescription"),
       icon: "🎤",
-      color: "from-purple-400 to-pink-400",
+      href: "/projects",
     },
     {
       id: "blog",
-      title: "Blog",
+      title: t("navigation.blog"),
+      description: t("home.blogDescription"),
       icon: "📺",
-      color: "from-green-400 to-teal-400",
+      href: "/blog",
     },
     {
       id: "links",
-      title: "Links",
+      title: t("navigation.links"),
+      description: t("home.linksDescription"),
       icon: "🏛️",
-      color: "from-orange-400 to-red-400",
+      href: "/links",
     },
     {
       id: "contact",
-      title: "Contact",
+      title: t("navigation.contact"),
+      description: t("home.contactDescription"),
       icon: "🔭",
-      color: "from-indigo-400 to-blue-400",
+      href: "/links",
     },
   ];
 
-  const handleBuildingClick = (sectionId: string) => {
-    setCollapsedBuildings((prev) => [...prev, sectionId]);
+  const handleBuildingClick = (buildingId: string) => {
+    setCollapsedBuildings((prev) => {
+      const newSet = new Set(prev);
+      newSet.add(buildingId);
+      return newSet;
+    });
+
+    // Rebuild after 2 seconds
     setTimeout(() => {
-      setCollapsedBuildings((prev) => prev.filter((id) => id !== sectionId));
-    }, 3000);
+      setCollapsedBuildings((prev) => {
+        const newSet = new Set(prev);
+        newSet.delete(buildingId);
+        return newSet;
+      });
+    }, 2000);
   };
 
   return (
-    <main className="h-screen relative overflow-hidden">
-      {/* Hero Section with Cityscape */}
-      <section className="relative z-10 h-full flex flex-col justify-center items-center text-white px-4 pt-32">
-        <div className="text-center max-w-4xl mx-auto mb-6">
-          <h1 className="text-4xl md:text-6xl font-bold mb-2 animate-fade-in-up">MANDU</h1>
-          <p className="text-base md:text-lg opacity-90 animate-fade-in-up-delayed">
-            AI Engineer / Developer / Problem Solver
-          </p>
-        </div>
+    <div className="min-h-screen relative overflow-hidden">
+      {/* City Skyline Background */}
+      <div className="fixed inset-0 z-0">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-navy via-primary-navy to-primary-mint dark:from-background-dark dark:via-background-dark dark:to-background-dark" />
 
-        {/* Interactive Cityscape */}
-        <div className="relative w-full max-w-6xl mx-auto flex-1 flex flex-col justify-center">
-          {/* Water with Waves */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cyan-400/40 to-transparent animate-wave"></div>
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Floating Clouds */}
+          <div
+            className="absolute top-20 left-10 w-20 h-12 bg-white/10 rounded-full animate-float"
+            style={{ animationDelay: "0s" }}
+          ></div>
+          <div
+            className="absolute top-40 right-20 w-16 h-10 bg-white/10 rounded-full animate-float"
+            style={{ animationDelay: "2s" }}
+          ></div>
+          <div
+            className="absolute top-60 left-1/4 w-24 h-14 bg-white/10 rounded-full animate-float"
+            style={{ animationDelay: "4s" }}
+          ></div>
 
           {/* Moving Vehicles */}
-          <div className="absolute bottom-16 left-0 w-full">
-            {/* Airplane */}
-            <div className="absolute top-8 left-0 w-6 h-1.5 bg-white/60 rounded-full animate-plane-fly">
-              <div className="absolute -top-0.5 left-0.5 w-0.5 h-0.5 bg-white/40 rounded-full"></div>
-              <div className="absolute -top-0.5 right-0.5 w-0.5 h-0.5 bg-white/40 rounded-full"></div>
-            </div>
+          <div className="absolute bottom-20 left-0 w-16 h-8 bg-primary-mint/20 rounded-full animate-car-move"></div>
+          <div
+            className="absolute bottom-32 left-0 w-20 h-6 bg-primary-mint/20 rounded-full animate-boat-move"
+            style={{ animationDelay: "5s" }}
+          ></div>
+          <div
+            className="absolute bottom-40 left-0 w-12 h-4 bg-primary-mint/20 rounded-full animate-plane-move"
+            style={{ animationDelay: "10s" }}
+          ></div>
 
-            {/* Boat */}
-            <div className="absolute bottom-6 left-1/4 w-10 h-5 bg-white/80 rounded-full animate-boat-float">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-0.5 h-3 bg-white/60"></div>
-            </div>
+          {/* Water Waves */}
+          <div className="absolute bottom-0 left-0 w-full h-8 bg-primary-mint/10 animate-wave"></div>
+          <div
+            className="absolute bottom-2 left-0 w-full h-6 bg-primary-mint/5 animate-wave-reverse"
+            style={{ animationDelay: "1s" }}
+          ></div>
+        </div>
+      </div>
 
-            {/* Car */}
-            <div className="absolute bottom-0 left-0 w-6 h-3 bg-yellow-400 rounded-full animate-car-move">
-              <div className="absolute -top-0.5 left-0.5 w-1.5 h-1.5 bg-yellow-300 rounded-full"></div>
-              <div className="absolute -top-0.5 right-0.5 w-1.5 h-1.5 bg-yellow-300 rounded-full"></div>
-            </div>
-          </div>
+      {/* Hero Section */}
+      <section className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center">
+        <div className="max-w-4xl mx-auto animate-fade-in">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-slide-up">{t("home.title")}</h1>
+          <p className="text-xl md:text-2xl text-white/80 mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+            AI Engineer / Developer
+          </p>
 
-          {/* Cityscape Buildings */}
-          <div className="relative h-64 flex items-end justify-center space-x-10">
-            {sections.map((section) => (
-              <div
-                key={section.id}
-                className={`relative group cursor-pointer transition-all duration-500 ${
-                  hoveredSection === section.id ? "transform scale-110" : ""
-                } ${collapsedBuildings.includes(section.id) ? "animate-building-collapse" : ""}`}
-                onMouseEnter={() => setHoveredSection(section.id)}
-                onMouseLeave={() => setHoveredSection(null)}
-                onClick={() => handleBuildingClick(section.id)}
+          {/* Tech Stack Indicators */}
+          <div
+            className="flex flex-wrap justify-center gap-4 mb-12 animate-slide-up"
+            style={{ animationDelay: "0.4s" }}
+          >
+            {["Machine Learning", "TypeScript", "Python", "React", "Next.js"].map((tech, index) => (
+              <span
+                key={tech}
+                className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium border border-white/20"
+                style={{ animationDelay: `${0.6 + index * 0.1}s` }}
               >
-                {/* Speech Bubble */}
-                <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white/20 backdrop-blur-sm rounded-lg px-2 py-0.5 text-xs font-medium border border-white/30 animate-fade-in-up">
-                  {section.title}
-                </div>
-
-                {/* Building with Illustrations */}
-                <div
-                  className={`relative transition-all duration-500 ${
-                    hoveredSection === section.id ? "animate-building-hover" : ""
-                  }`}
-                >
-                  {/* Main Building */}
-                  <div
-                    className={`w-16 h-32 rounded-t-lg relative shadow-lg ${
-                      section.id === "about"
-                        ? "bg-gradient-to-b from-gray-600 to-gray-800"
-                        : section.id === "projects"
-                        ? "bg-gradient-to-b from-purple-600 to-purple-800"
-                        : section.id === "blog"
-                        ? "bg-gradient-to-b from-orange-600 to-orange-800"
-                        : section.id === "links"
-                        ? "bg-gradient-to-b from-green-600 to-green-800"
-                        : "bg-gradient-to-b from-blue-600 to-blue-800"
-                    }`}
-                  >
-                    {/* Windows */}
-                    <div className="grid grid-cols-2 gap-0.5 p-1.5">
-                      {Array.from({ length: 8 }).map((_, i) => (
-                        <div
-                          key={i}
-                          className="w-1.5 h-1.5 bg-white/60 rounded-sm animate-pulse"
-                          style={{ animationDelay: `${i * 0.1}s` }}
-                        ></div>
-                      ))}
-                    </div>
-
-                    {/* Special Illustrations */}
-                    <BuildingIllustrations sectionId={section.id} />
-                  </div>
-
-                  {/* Building Shadow */}
-                  <div className="w-16 h-3 bg-black/20 rounded-full transform -translate-y-1"></div>
-                </div>
-
-                {/* Click Effect */}
-                {collapsedBuildings.includes(section.id) && (
-                  <div className="absolute inset-0 bg-red-500/50 rounded-lg animate-pulse"></div>
-                )}
-              </div>
+                {tech}
+              </span>
             ))}
           </div>
 
-          {/* Ground/Path */}
-          <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-t from-yellow-200/30 to-transparent"></div>
+          {/* CTA Buttons */}
+          <div
+            className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up"
+            style={{ animationDelay: "0.8s" }}
+          >
+            <Link
+              href="/about"
+              className="px-8 py-3 bg-primary-mint text-primary-navy font-semibold rounded-lg hover:bg-primary-mint/90 transition-all duration-300 transform hover:scale-105"
+            >
+              {t("home.viewResume")}
+            </Link>
+            <Link
+              href="/projects"
+              className="px-8 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
+            >
+              {t("home.viewProjects")}
+            </Link>
+          </div>
         </div>
 
-        {/* Navigation Links */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3">
-          {sections.map((section) => (
-            <Link
-              key={section.id}
-              href={`/${section.id}`}
-              className="px-2.5 py-1 bg-white/20 backdrop-blur-sm rounded-lg text-white font-medium hover:bg-white/30 transition-all duration-300 border border-white/30 hover:scale-105 text-xs"
-            >
-              {section.title}
-            </Link>
-          ))}
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-gentle">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
+          </div>
         </div>
       </section>
-    </main>
+
+      {/* Interactive Cityscape */}
+      <section className="relative min-h-screen flex items-center justify-center px-4">
+        <div className="max-w-6xl mx-auto w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {sections.map((section, index) => (
+              <div key={section.id} className="relative group" style={{ animationDelay: `${index * 0.2}s` }}>
+                <Link href={section.href}>
+                  <div
+                    className={`relative p-8 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 transition-all duration-500 cursor-pointer ${
+                      collapsedBuildings.has(section.id)
+                        ? "animate-building-collapse"
+                        : hoveredBuilding === section.id
+                        ? "animate-building-hover"
+                        : "hover:animate-building-hover"
+                    } ${collapsedBuildings.has(section.id) ? "pointer-events-none" : ""}`}
+                    onMouseEnter={() => setHoveredBuilding(section.id)}
+                    onMouseLeave={() => setHoveredBuilding(null)}
+                    onClick={() => handleBuildingClick(section.id)}
+                  >
+                    {/* Building Illustration */}
+                    <div className="mb-6 flex justify-center">
+                      <BuildingIllustrations
+                        sectionId={section.id}
+                        className={`${collapsedBuildings.has(section.id) ? "animate-building-collapse" : ""} ${
+                          hoveredBuilding === section.id ? "animate-building-hover" : ""
+                        }`}
+                      />
+                    </div>
+
+                    {/* Content */}
+                    <div className="text-center">
+                      <h3 className="text-2xl font-bold text-white mb-3">{section.title}</h3>
+                      <p className="text-white/70 text-sm leading-relaxed">{section.description}</p>
+                    </div>
+
+                    {/* Hover Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-mint/20 to-primary-navy/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                </Link>
+
+                {/* Speech Bubble */}
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 text-sm font-medium text-primary-navy opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {section.title}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Water Waves */}
+        <div className="absolute bottom-0 left-0 w-full h-16 overflow-hidden">
+          <div className="absolute bottom-0 left-0 w-full h-full bg-primary-mint/20 animate-wave"></div>
+          <div
+            className="absolute bottom-2 left-0 w-full h-full bg-primary-mint/10 animate-wave-reverse"
+            style={{ animationDelay: "1s" }}
+          ></div>
+        </div>
+      </section>
+    </div>
   );
 }

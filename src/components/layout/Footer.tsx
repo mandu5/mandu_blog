@@ -1,83 +1,91 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import Link from "next/link";
 import Image from "next/image";
-import { useTheme } from "@/contexts/ThemeContext";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTheme } from "@/contexts/ThemeContext";
 import { SOCIAL_LINKS } from "@/constants";
 
 export default function Footer() {
   const pathname = usePathname();
+  const { t, language, toggleLanguage } = useLanguage();
   const { theme, toggleTheme } = useTheme();
-  const { language, toggleLanguage } = useLanguage();
-  const currentYear = new Date().getFullYear();
-
-  // Only show language toggle on blog pages
-  const isBlogPage = pathname?.startsWith("/blog");
 
   return (
-    <footer className="bg-white/10 backdrop-blur-sm border-t border-white/20 text-white">
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+    <footer className="relative bg-gradient-to-t from-primary-navy to-primary-mint dark:from-background-dark dark:to-background-dark">
+      {/* Wave Animation */}
+      <div className="absolute top-0 left-0 w-full h-16 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-white/10 animate-wave"></div>
+        <div
+          className="absolute top-2 left-0 w-full h-full bg-white/5 animate-wave-reverse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {/* Copyright */}
-          <div className="text-sm text-white/70">© {currentYear} Mandu. All rights reserved</div>
+          <div className="text-center md:text-left">
+            <div className="text-white/80 text-sm">© 2024 MANDU. All rights reserved.</div>
+            <div className="text-white/60 text-xs mt-2">AI Engineer & Machine Learning Developer</div>
+          </div>
 
           {/* Social Links */}
-          <div className="flex items-center space-x-4">
-            {SOCIAL_LINKS.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
+          <div className="flex justify-center space-x-6">
+            {SOCIAL_LINKS.map((social) => (
+              <Link
+                key={social.name}
+                href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-white transition-colors duration-300"
-                aria-label={link.name}
+                className="group p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
               >
-                <Image src={link.icon} alt={link.name} width={20} height={20} className="w-5 h-5" />
-              </a>
+                <Image
+                  src={social.icon}
+                  alt={social.name}
+                  width={24}
+                  height={24}
+                  className="w-6 h-6 filter brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
+                />
+              </Link>
             ))}
           </div>
 
-          {/* Language and Theme Toggles */}
-          <div className="flex items-center space-x-2">
-            {/* Language Toggle - Only show on blog pages */}
-            {isBlogPage && (
-              <button
-                onClick={toggleLanguage}
-                className="px-3 py-1 bg-white/20 text-white rounded-lg text-sm font-medium hover:bg-white/30 transition-all duration-300 border border-white/30"
-              >
-                {language === "ko" ? "EN" : "KO"}
-              </button>
-            )}
+          {/* Theme & Language Toggles */}
+          <div className="flex justify-center md:justify-end space-x-4">
+            {/* Language Toggle - Show on all pages */}
+            <button
+              onClick={toggleLanguage}
+              className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-all duration-300"
+            >
+              {language === "ko" ? "EN" : "KO"}
+            </button>
 
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-all duration-300 border border-white/30"
-              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-all duration-300 flex items-center space-x-2"
             >
-              {theme === "dark" ? (
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                  />
-                </svg>
-              ) : (
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                  />
-                </svg>
-              )}
+              <span>{theme === "dark" ? "☀️" : "🌙"}</span>
+              <span>{theme === "dark" ? "Light" : "Dark"}</span>
             </button>
           </div>
         </div>
+
+        {/* Bottom Wave */}
+        <div className="mt-8 pt-8 border-t border-white/20">
+          <div className="text-center text-white/60 text-xs"></div>
+        </div>
+      </div>
+
+      {/* Additional Wave Elements */}
+      <div className="absolute bottom-0 left-0 w-full h-8 overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-full h-full bg-primary-mint/20 animate-wave"></div>
+        <div
+          className="absolute bottom-1 left-0 w-full h-full bg-primary-mint/10 animate-wave-reverse"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
       </div>
     </footer>
   );
