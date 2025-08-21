@@ -33,9 +33,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     if (savedTheme && (savedTheme === "light" || savedTheme === "dark")) {
       setTheme(savedTheme);
     } else {
-      // 시스템 테마 감지
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(prefersDark ? "dark" : "light");
+      // 기본값을 다크모드로 설정
+      setTheme("dark");
     }
 
     setIsLoaded(true);

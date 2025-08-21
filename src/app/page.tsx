@@ -39,13 +39,7 @@ export default function HomePage() {
       icon: "🏛️",
       href: "/links",
     },
-    {
-      id: "contact",
-      title: t("navigation.contact"),
-      description: t("home.contactDescription"),
-      icon: "🔭",
-      href: "/links",
-    },
+
   ];
 
   const handleBuildingClick = (buildingId: string) => {
