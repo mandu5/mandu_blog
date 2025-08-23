@@ -1,16 +1,21 @@
 {
-  "name": "AI Engineer Portfolio",
-  "short_name": "AI Engineer",
-  "description": "AI Engineer & Developer specializing in machine learning and web development",
+  "name": "MANDU - AI Engineer Portfolio",
+  "short_name": "MANDU",
+  "description": "AI Engineer & Machine Learning Developer Portfolio showcasing cutting-edge projects and expertise in artificial intelligence",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#3b82f6",
+  "background_color": "#2779a7",
+  "theme_color": "#49c5b6",
+  "orientation": "portrait",
+  "scope": "/",
   "icons": [
     {
       "src": "/icon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "categories": ["productivity", "education"],
+  "lang": "en"
 }

@@ -117,8 +117,7 @@ export function formatFileSize(bytes: number): string {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 }
 
-// 로컬 스토리지 기반 좋아요 시스템
-const LIKED_POSTS_KEY = "liked_posts";
+// 서버 기반 좋아요 시스템
 export const COMMENT_RATE_LIMIT_KEY = "comment_rate_limit";
 
 interface RateLimitData {
@@ -126,58 +125,56 @@ interface RateLimitData {
   count: number;
 }
 
-// 로컬 스토리지에서 좋아요한 포스트 목록 가져오기
-function getLikedPosts(): string[] {
-  if (typeof window === "undefined") return [];
-
+// 사용자 IP 가져오기 (간단한 방법)
+async function getUserIP(): Promise<string> {
   try {
-    const likedPosts = localStorage.getItem(LIKED_POSTS_KEY);
-    return likedPosts ? JSON.parse(likedPosts) : [];
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    return data.ip;
   } catch (error) {
-    console.error("Failed to get liked posts from localStorage:", error);
-    return [];
+    // 실패시 랜덤 ID 생성 (개발 환경용)
+    return `user_${Math.random().toString(36).substr(2, 9)}`;
   }
 }
 
-// 로컬 스토리지에 좋아요한 포스트 저장
-function saveLikedPosts(likedPosts: string[]): void {
-  if (typeof window === "undefined") return;
-
+// 서버에서 좋아요 정보 가져오기
+export async function getLikeInfo(postId: string): Promise<{ count: number; isLiked: boolean }> {
   try {
-    localStorage.setItem(LIKED_POSTS_KEY, JSON.stringify(likedPosts));
+    const userIP = await getUserIP();
+    const response = await fetch(`/api/likes?postId=${postId}`);
+    const data = await response.json();
+    
+    return {
+      count: data.count || 0,
+      isLiked: data.userIPs?.includes(userIP) || false
+    };
   } catch (error) {
-    console.error("Failed to save liked posts to localStorage:", error);
+    console.error("Failed to get like info:", error);
+    return { count: 0, isLiked: false };
   }
 }
 
 // 좋아요 토글
-export function toggleLike(postId: string): boolean {
-  const likedPosts = getLikedPosts();
-  const isLiked = likedPosts.includes(postId);
-
-  if (isLiked) {
-    // 좋아요 취소
-    const newLikedPosts = likedPosts.filter((id) => id !== postId);
-    saveLikedPosts(newLikedPosts);
-    return false;
-  } else {
-    // 좋아요 추가
-    const newLikedPosts = [...likedPosts, postId];
-    saveLikedPosts(newLikedPosts);
-    return true;
+export async function toggleLike(postId: string): Promise<{ count: number; isLiked: boolean }> {
+  try {
+    const userIP = await getUserIP();
+    const response = await fetch('/api/likes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ postId, userIP }),
+    });
+    
+    const data = await response.json();
+    return {
+      count: data.count || 0,
+      isLiked: data.isLiked || false
+    };
+  } catch (error) {
+    console.error("Failed to toggle like:", error);
+    return { count: 0, isLiked: false };
   }
-}
-
-// 사용자가 해당 포스트를 좋아요했는지 확인
-export function isLikedByUser(postId: string): boolean {
-  const likedPosts = getLikedPosts();
-  return likedPosts.includes(postId);
-}
-
-// 좋아요 수 계산 (로컬 스토리지 기반)
-export function getLikeCount(postId: string): number {
-  const likedPosts = getLikedPosts();
-  return likedPosts.filter((id) => id === postId).length;
 }
 
 // 댓글 작성 가능 여부 확인 (30분 제한)

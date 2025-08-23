@@ -4,7 +4,7 @@ import Link from "next/link";
 import { BLOG_POSTS_DATA } from "@/constants";
 import { BlogPost } from "@/types";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { getLikeCount, toggleLike, isLikedByUser, formatRelativeDate, getCommentCount } from "@/lib/utils";
+import { getLikeInfo, toggleLike, formatRelativeDate, getCommentCount } from "@/lib/utils";
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -18,35 +18,42 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
 
   useEffect(() => {
     setIsClient(true);
-    setLikeCount(getLikeCount(post.id));
+    // 서버에서 좋아요 정보 가져오기
+    const fetchLikeInfo = async () => {
+      const likeInfo = await getLikeInfo(post.id);
+      setLikeCount(likeInfo.count);
+      setIsLiked(likeInfo.isLiked);
+    };
+    fetchLikeInfo();
     setCommentCount(getCommentCount(post.id));
-    setIsLiked(isLikedByUser(post.id));
   }, [post.id]);
 
   // 댓글 수와 좋아요 수를 주기적으로 업데이트
   useEffect(() => {
     if (!isClient) return;
 
-    const updateCounts = () => {
-      setLikeCount(getLikeCount(post.id));
+    const updateCounts = async () => {
+      const likeInfo = await getLikeInfo(post.id);
+      setLikeCount(likeInfo.count);
+      setIsLiked(likeInfo.isLiked);
       setCommentCount(getCommentCount(post.id));
     };
 
     // 초기 업데이트
     updateCounts();
 
-    // 주기적 업데이트 (1초마다)
-    const interval = setInterval(updateCounts, 1000);
+    // 주기적 업데이트 (5초마다)
+    const interval = setInterval(updateCounts, 5000);
 
     return () => clearInterval(interval);
   }, [post.id, isClient]);
 
-  const handleLike = (e: React.MouseEvent) => {
+  const handleLike = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    const newLiked = toggleLike(post.id);
-    setIsLiked(newLiked);
-    setLikeCount(getLikeCount(post.id));
+    const result = await toggleLike(post.id);
+    setIsLiked(result.isLiked);
+    setLikeCount(result.count);
   };
 
   // 서버 사이드 렌더링 중에는 기본값 표시

@@ -4,8 +4,7 @@ import { BLOG_POSTS_DATA } from "@/constants";
 import Link from "next/link";
 import {
   toggleLike,
-  getLikeCount,
-  isLikedByUser,
+  getLikeInfo,
   canComment,
   saveComment,
   getComments,
@@ -47,8 +46,13 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
   useEffect(() => {
     setIsClient(true);
     if (post) {
-      setLikeCount(getLikeCount(post.id));
-      setIsLiked(isLikedByUser(post.id));
+      // 서버에서 좋아요 정보 가져오기
+      const fetchLikeInfo = async () => {
+        const likeInfo = await getLikeInfo(post.id);
+        setLikeCount(likeInfo.count);
+        setIsLiked(likeInfo.isLiked);
+      };
+      fetchLikeInfo();
       setComments(getComments(post.id));
     }
   }, [post]);
@@ -335,7 +339,12 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
                     </div>
                     <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                       <button
-                        onClick={handleLike}
+                        onClick={async () => {
+                          if (!post) return;
+                          const result = await toggleLike(post.id);
+                          setIsLiked(result.isLiked);
+                          setLikeCount(result.count);
+                        }}
                         className={`flex items-center gap-1 ${isLiked ? "text-yellow-400" : "hover:text-yellow-400"}`}
                       >
                         <span className="text-lg">{isLiked ? "⭐" : "☆"}</span>
