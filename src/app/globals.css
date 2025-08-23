@@ -148,14 +148,12 @@ html {
   }
 }
 
-@keyframes fade-in-up {
+@keyframes slide-in-up {
   from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.9);
+    transform: translateY(30px);
   }
   to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
@@ -202,8 +200,8 @@ html {
   animation: slide-in-right 1s ease-out;
 }
 
-.fade-in-up {
-  animation: fade-in-up 1s ease-out;
+.slide-in-up {
+  animation: slide-in-up 1s ease-out;
 }
 
 /* Gradient text animation */
@@ -569,24 +567,20 @@ html {
   }
 }
 
-@keyframes fade-in-up {
+@keyframes slide-in-up {
   from {
-    opacity: 0;
     transform: translateY(30px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes fade-in-up-delayed {
+@keyframes slide-in-up-delayed {
   from {
-    opacity: 0;
     transform: translateY(30px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -774,8 +768,8 @@ html {
   animation: fade-in-up 1s ease-out;
 }
 
-.animate-fade-in-up-delayed {
-  animation: fade-in-up-delayed 1s ease-out;
+.animate-slide-in-up-delayed {
+  animation: slide-in-up-delayed 1s ease-out;
   animation-delay: 0.3s;
 }
 
@@ -917,8 +911,8 @@ html {
   animation: slide-in-right 0.6s ease-out;
 }
 
-.fade-in-up {
-  animation: fade-in-up 0.6s ease-out;
+.slide-in-up {
+  animation: slide-in-up 0.6s ease-out;
 }
 
 .gradient-text {

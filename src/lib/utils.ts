@@ -128,7 +128,7 @@ interface RateLimitData {
 // 사용자 IP 가져오기 (간단한 방법)
 async function getUserIP(): Promise<string> {
   try {
-    const response = await fetch('https://api.ipify.org?format=json');
+    const response = await fetch("https://api.ipify.org?format=json");
     const data = await response.json();
     return data.ip;
   } catch (error) {
@@ -143,10 +143,10 @@ export async function getLikeInfo(postId: string): Promise<{ count: number; isLi
     const userIP = await getUserIP();
     const response = await fetch(`/api/likes?postId=${postId}`);
     const data = await response.json();
-    
+
     return {
       count: data.count || 0,
-      isLiked: data.userIPs?.includes(userIP) || false
+      isLiked: data.userIPs?.includes(userIP) || false,
     };
   } catch (error) {
     console.error("Failed to get like info:", error);
@@ -158,18 +158,18 @@ export async function getLikeInfo(postId: string): Promise<{ count: number; isLi
 export async function toggleLike(postId: string): Promise<{ count: number; isLiked: boolean }> {
   try {
     const userIP = await getUserIP();
-    const response = await fetch('/api/likes', {
-      method: 'POST',
+    const response = await fetch("/api/likes", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ postId, userIP }),
     });
-    
+
     const data = await response.json();
     return {
       count: data.count || 0,
-      isLiked: data.isLiked || false
+      isLiked: data.isLiked || false,
     };
   } catch (error) {
     console.error("Failed to toggle like:", error);

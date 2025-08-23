@@ -11,7 +11,7 @@ export default function ProjectsPage() {
     <div className="min-h-screen pt-20 pb-16 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
-        <section className="mb-16 animate-fade-in">
+        <section className="mb-16 animate-slide-in-up">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-slide-up">
               {t("projects.title")}

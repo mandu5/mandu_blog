@@ -7,10 +7,10 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     // 진행바 애니메이션 시작
-    const progressBar = document.getElementById('progress-bar');
+    const progressBar = document.getElementById("progress-bar");
     if (progressBar) {
       setTimeout(() => {
-        progressBar.style.width = '100%';
+        progressBar.style.width = "100%";
       }, 100);
     }
 
@@ -46,8 +46,8 @@ export default function LoadingScreen() {
 
         {/* Progress Bar */}
         <div className="mt-4 w-48 h-1 bg-white/20 rounded-full overflow-hidden mx-auto">
-          <div 
-            className="h-full bg-primary-mint rounded-full transition-all duration-2000 ease-out" 
+          <div
+            className="h-full bg-primary-mint rounded-full transition-all duration-2000 ease-out"
             style={{ width: "0%" }}
             id="progress-bar"
           ></div>

@@ -10,7 +10,7 @@ export default function AboutPage() {
     <div className="min-h-screen pt-20 pb-16 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header Section */}
-        <section className="mb-16 animate-fade-in">
+        <section className="mb-16 animate-slide-in-up">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-slide-up">{t("about.title")}</h1>
             <p className="text-xl text-white/80 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: "0.2s" }}>
