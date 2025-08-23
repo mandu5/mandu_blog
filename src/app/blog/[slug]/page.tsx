@@ -107,12 +107,6 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
     );
   }
 
-  const handleLike = () => {
-    const newLiked = toggleLike(post.id);
-    setIsLiked(newLiked);
-    setLikeCount(getLikeCount(post.id));
-  };
-
   const handleCommentSubmit = () => {
     if (!newComment.trim() || !commentAuthor.trim() || !commentPassword.trim()) {
       setCommentError("모든 필드를 입력해주세요.");

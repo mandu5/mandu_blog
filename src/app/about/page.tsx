@@ -10,17 +10,15 @@ export default function AboutPage() {
     <div className="min-h-screen pt-20 pb-16 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header Section */}
-        <section className="mb-16 animate-slide-in-up">
+        <section className="mb-16">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-slide-up">{t("about.title")}</h1>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              {t("about.subtitle")}
-            </p>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">{t("about.title")}</h1>
+            <p className="text-xl text-white/80 max-w-2xl mx-auto">{t("about.subtitle")}</p>
           </div>
 
           {/* Profile Summary */}
           <div
-            className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 animate-slide-up"
+            className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20"
             style={{ animationDelay: "0.4s" }}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -58,7 +56,7 @@ export default function AboutPage() {
         </section>
 
         {/* Education Section */}
-        <section className="mb-16 animate-slide-in-left" style={{ animationDelay: "0.6s" }}>
+        <section className="mb-16">
           <h2 className="text-3xl font-bold text-white mb-8 flex items-center">
             <span className="w-8 h-8 bg-primary-mint rounded-full flex items-center justify-center text-primary-navy font-bold text-sm mr-4">
               🎓
@@ -84,7 +82,7 @@ export default function AboutPage() {
         </section>
 
         {/* Experience Section */}
-        <section className="mb-16 animate-slide-in-right" style={{ animationDelay: "0.8s" }}>
+        <section className="mb-16">
           <h2 className="text-3xl font-bold text-white mb-8 flex items-center">
             <span className="w-8 h-8 bg-primary-mint rounded-full flex items-center justify-center text-primary-navy font-bold text-sm mr-4">
               💼
@@ -118,7 +116,7 @@ export default function AboutPage() {
         </section>
 
         {/* Certificates Section */}
-        <section className="mb-16 animate-slide-in-left" style={{ animationDelay: "1.0s" }}>
+        <section className="mb-16">
           <h2 className="text-3xl font-bold text-white mb-8 flex items-center">
             <span className="w-8 h-8 bg-primary-mint rounded-full flex items-center justify-center text-primary-navy font-bold text-sm mr-4">
               🏆
@@ -151,7 +149,7 @@ export default function AboutPage() {
         </section>
 
         {/* Awards Section */}
-        <section className="animate-slide-in-right" style={{ animationDelay: "1.2s" }}>
+        <section className="">
           <h2 className="text-3xl font-bold text-white mb-8 flex items-center">
             <span className="w-8 h-8 bg-primary-mint rounded-full flex items-center justify-center text-primary-navy font-bold text-sm mr-4">
               🎯

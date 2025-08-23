@@ -39,7 +39,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: "Contact",
     icon: ICONS.CONTACT,
-    url: "mailto:rhdudals0505@naver.com",
+    url: "mailto:mandu00005@gmail.com",
   },
   {
     name: "GitHub",
@@ -171,9 +171,9 @@ export const PROFILE_DATA = {
   contacts: [
     {
       nameKey: "common.email",
-      value: "rhdudals0505@naver.com",
+      value: "mandu00005@gmail.com",
       icon: ICONS.CONTACT,
-      link: "mailto:rhdudals0505@naver.com",
+      link: "mailto:mandu00005@gmail.com",
     },
     {
       nameKey: "common.github",

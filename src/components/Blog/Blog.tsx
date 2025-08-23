@@ -125,10 +125,25 @@ const Blog: React.FC = () => {
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
   const [isClient, setIsClient] = useState(false);
   const [showAllTags, setShowAllTags] = useState(false);
+  const [likes, setLikes] = useState<{ [key: string]: { count: number; isLiked: boolean } }>({});
 
   useEffect(() => {
     setIsClient(true);
-  }, []);
+
+    // 모든 포스트의 좋아요 정보를 가져오기
+    const fetchAllLikes = async () => {
+      const likesData: { [key: string]: { count: number; isLiked: boolean } } = {};
+      for (const post of BLOG_POSTS_DATA) {
+        const likeInfo = await getLikeInfo(post.id);
+        likesData[post.id] = likeInfo;
+      }
+      setLikes(likesData);
+    };
+
+    if (isClient) {
+      fetchAllLikes();
+    }
+  }, [isClient]);
 
   // Overview 섹션의 댓글 수와 좋아요 수를 주기적으로 업데이트하기 위한 강제 리렌더링
   useEffect(() => {
@@ -427,7 +442,7 @@ const Blog: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {BLOG_POSTS_DATA.sort((a, b) => (isClient ? getLikeCount(b.id) - getLikeCount(a.id) : 0))
+                {BLOG_POSTS_DATA.sort((a, b) => (isClient ? (likes[b.id]?.count || 0) - (likes[a.id]?.count || 0) : 0))
                   .slice(0, 2)
                   .map((post) => (
                     <Link key={post.id} href={`/blog/${post.slug}`} className="block">
@@ -443,7 +458,7 @@ const Blog: React.FC = () => {
                           <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                             <div className="flex items-center gap-1">
                               <span className="text-yellow-500">★</span>
-                              <span>{isClient ? getLikeCount(post.id) : 0}</span>
+                              <span>{isClient ? likes[post.id]?.count || 0 : 0}</span>
                             </div>
                             <div className="flex items-center gap-1">
                               <span>💬</span>
@@ -491,7 +506,7 @@ const Blog: React.FC = () => {
                           <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                             <div className="flex items-center gap-1">
                               <span className="text-yellow-500">★</span>
-                              <span>{isClient ? getLikeCount(post.id) : 0}</span>
+                              <span>{isClient ? likes[post.id]?.count || 0 : 0}</span>
                             </div>
                             <div className="flex items-center gap-1">
                               <span>💬</span>
