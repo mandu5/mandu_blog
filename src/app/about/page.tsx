@@ -29,26 +29,17 @@ export default function AboutPage() {
               <div>
                 <h3 className="text-2xl font-bold text-white mb-4">{t("about.skills")}</h3>
                 <div className="flex flex-wrap gap-2">
-                  {[
-                    "Machine Learning",
-                    "Deep Learning",
-                    "Python",
-                    "TensorFlow",
-                    "PyTorch",
-                    "React",
-                    "TypeScript",
-                    "Next.js",
-                    "AWS",
-                    "Docker",
-                  ].map((skill, index) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1 bg-primary-mint/20 text-primary-mint rounded-full text-sm font-medium"
-                      style={{ animationDelay: `${0.6 + index * 0.1}s` }}
-                    >
-                      {skill}
-                    </span>
-                  ))}
+                  {["Machine Learning", "Deep Learning", "Python", "React", "TypeScript", "Next.js"].map(
+                    (skill, index) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1 bg-primary-mint/20 text-primary-mint rounded-full text-sm font-medium"
+                        style={{ animationDelay: `${0.6 + index * 0.1}s` }}
+                      >
+                        {skill}
+                      </span>
+                    ),
+                  )}
                 </div>
               </div>
             </div>
@@ -123,20 +114,22 @@ export default function AboutPage() {
             </span>
             {t("about.certificates")}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-6">
             {CERTIFICATES_DATA.map((certificate, index) => (
               <div
                 key={index}
                 className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300"
                 style={{ animationDelay: `${1.2 + index * 0.1}s` }}
               >
-                <h3 className="text-lg font-bold text-white mb-2">{certificate.title}</h3>
-                <p className="text-primary-mint font-medium mb-2">{certificate.issuer}</p>
-                <p className="text-white/60 text-sm mb-3">{certificate.period}</p>
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                  <h3 className="text-xl font-bold text-white">{certificate.title}</h3>
+                  <span className="text-primary-mint font-medium">{certificate.period}</span>
+                </div>
+                <p className="text-primary-mint font-medium mb-3">{certificate.issuer}</p>
                 {certificate.description && certificate.description.length > 0 && (
-                  <ul className="space-y-1">
+                  <ul className="space-y-2">
                     {certificate.description.map((desc, descIndex) => (
-                      <li key={descIndex} className="text-white/70 text-xs flex items-start">
+                      <li key={descIndex} className="text-white/70 text-sm flex items-start">
                         <span className="text-primary-mint mr-2">•</span>
                         {desc}
                       </li>
@@ -165,7 +158,7 @@ export default function AboutPage() {
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
                   <h3 className="text-xl font-bold text-white">{award.name}</h3>
-                  <span className="text-primary-mint font-medium">{award.date}</span>
+                  <span className="text-primary-mint font-medium">{award.date.split(" ")[0]}</span>
                 </div>
                 <p className="text-white/80">{award.description}</p>
               </div>

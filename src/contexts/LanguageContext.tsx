@@ -36,7 +36,8 @@ const TRANSLATIONS = {
     "about.title": "About Me",
     "about.subtitle": "AI Engineer & Machine Learning Developer with passion for innovation",
     "about.summary": "Professional Summary",
-    "about.summaryText": "Experienced AI Engineer specializing in machine learning, deep learning, and full-stack development. Passionate about creating innovative solutions that solve real-world problems through cutting-edge technology.",
+    "about.summaryText":
+      "Experienced AI Engineer specializing in machine learning, deep learning, and full-stack development. Passionate about creating innovative solutions that solve real-world problems through cutting-edge technology.",
     "about.skills": "Technical Skills",
     "about.education": "Education",
     "about.experience": "Experience",
@@ -47,7 +48,7 @@ const TRANSLATIONS = {
     "projects.subtitle": "Showcase of innovative AI projects and technical achievements",
     "projects.totalProjects": "Total Projects",
     "projects.technologies": "Technologies",
-    "projects.successRate": "Success Rate",
+    "projects.successRate": "Completion Rate",
     "projects.period": "Period",
     "projects.role": "Role",
 
@@ -133,7 +134,8 @@ const TRANSLATIONS = {
     "about.title": "About Me",
     "about.subtitle": "AI Engineer & Machine Learning Developer with passion for innovation",
     "about.summary": "Professional Summary",
-    "about.summaryText": "Experienced AI Engineer specializing in machine learning, deep learning, and full-stack development. Passionate about creating innovative solutions that solve real-world problems through cutting-edge technology.",
+    "about.summaryText":
+      "Experienced AI Engineer specializing in machine learning, deep learning, and full-stack development. Passionate about creating innovative solutions that solve real-world problems through cutting-edge technology.",
     "about.skills": "Technical Skills",
     "about.education": "Education",
     "about.experience": "Experience",
@@ -144,7 +146,7 @@ const TRANSLATIONS = {
     "projects.subtitle": "Showcase of innovative AI projects and technical achievements",
     "projects.totalProjects": "Total Projects",
     "projects.technologies": "Technologies",
-    "projects.successRate": "Success Rate",
+    "projects.successRate": "Completion Rate",
     "projects.period": "Period",
     "projects.role": "Role",
 

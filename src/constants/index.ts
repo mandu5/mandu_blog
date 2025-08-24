@@ -58,7 +58,7 @@ export const EDUCATION_DATA: EducationItem[] = [
   {
     institution: "Pennsylvania State University",
     degree: "B.S. in Software Engineering",
-    period: "2024 - Present",
+    period: "2024 - 2026",
     location: "Pennsylvania, United States",
   },
   {
@@ -117,7 +117,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     description: [],
   },
   {
-    title: "Kakao Enterprise Military AI-SW Intermediate Course",
+    title: "Kakao Enterprise Military AI-SW Course",
     issuer: "Kakao",
     period: "09/2024 - 11/2024",
     description: [],
@@ -145,9 +145,9 @@ export const PROJECTS_DATA: Project[] = [
     title: "Financial Advisor Chatbot",
     organization: "Google Machine Learning Bootcamp",
     description:
-      "Built an AI-driven chatbot using google/gemma-2-2b-it to deliver personalized financial recommendations. Leveraged Parameter-Efficient Fine-Tuning (PEFT) with LoRA and 4-bit quantization to reduce memory overhead and improve model performance.",
+      "Developed an AI-driven financial advisory system using advanced language models to deliver personalized investment recommendations. Implemented efficient fine-tuning techniques and quantization methods to optimize model performance and reduce computational overhead.",
     image: "/assets/images/project1.jpg",
-    tags: ["Python", "TensorFlow", "PEFT", "LoRA", "Gemma"],
+    tags: ["Python", "TensorFlow", "Machine Learning", "NLP", "API Development"],
     link: "https://www.kaggle.com/models/mandu5/financial-advisor",
     period: "08/2024 - 10/2024",
     theme: "primary",
@@ -157,9 +157,9 @@ export const PROJECTS_DATA: Project[] = [
     title: "JakSimFriend",
     organization: "SoftSquared",
     description:
-      "Led front-end development of a cross-platform React Native application for group self-improvement challenges. Integrated data visualization and social login features to enhance user experience and engagement.",
+      "Led front-end development of a cross-platform React Native application for group self-improvement challenges. Implemented advanced data visualization and user authentication systems to enhance user experience and engagement metrics.",
     image: "/assets/images/project2.jpg",
-    tags: ["React Native", "JavaScript", "Data Visualization", "Social Login"],
+    tags: ["React Native", "JavaScript", "Data Visualization", "User Authentication"],
     link: "https://github.com/JakSimFriend/frontend",
     period: "06/2024 - 08/2024",
     theme: "secondary",
@@ -260,6 +260,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     date: "2025-01-12",
     excerpt: "머신러닝을 위한 파이썬 생태계를 탐험하며 배운 점들을 공유합니다.",
     slug: "machine-learning-first-steps",
+    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=400&fit=crop&crop=center",
     content: `
 # 머신러닝 첫 걸음: 부스트코스로 배우는 파이썬 데이터 사이언스
 
@@ -588,6 +589,7 @@ print(f"R² 점수: {r2:.3f}")
 
 다음 여정에서는 더 강력한 앙상블 기법들을 탐험해보자!
     `,
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=400&fit=crop&crop=center",
     tags: ["Python", "MachineLearning", "DataScience", "AI", "LinearRegression", "LogisticRegression"],
     author: {
       name: "Mandu",

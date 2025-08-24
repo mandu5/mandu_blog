@@ -59,15 +59,17 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
   // 서버 사이드 렌더링 중에는 기본값 표시
   if (!isClient) {
     return (
-      <article className="flex items-start gap-4 py-6 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+      <article className="flex items-start gap-4 py-6 border-b border-white/20 last:border-b-0">
         {/* 콘텐츠 */}
         <div className="flex-1">
           <Link href={`/blog/${post.slug}`}>
-            <h2 className="text-xl font-bold mb-2 hover:text-blue-600 dark:hover:text-blue-400">{post.title}</h2>
+            <h2 className="text-xl font-bold mb-2 text-white hover:text-primary-mint transition-colors duration-300">
+              {post.title}
+            </h2>
           </Link>
-          <p className="text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{post.excerpt}</p>
+          <p className="text-white/80 mb-3 leading-relaxed">{post.excerpt}</p>
           {/* Meta Info */}
-          <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex items-center gap-4 text-sm text-white/60">
             <div className="flex items-center gap-1">
               <span className="text-lg">☆</span>
               <span>0</span>
@@ -84,18 +86,22 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
   }
 
   return (
-    <article className="flex items-start gap-4 py-6 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+    <article className="flex items-start gap-4 py-6 border-b border-white/20 last:border-b-0">
       {/* 콘텐츠 */}
       <div className="flex-1">
         <Link href={`/blog/${post.slug}`}>
-          <h2 className="text-xl font-bold mb-2 hover:text-blue-600 dark:hover:text-blue-400">{post.title}</h2>
+          <h2 className="text-xl font-bold mb-2 text-white hover:text-primary-mint transition-colors duration-300">
+            {post.title}
+          </h2>
         </Link>
-        <p className="text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{post.excerpt}</p>
+        <p className="text-white/80 mb-3 leading-relaxed">{post.excerpt}</p>
         {/* Meta Info */}
-        <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+        <div className="flex items-center gap-4 text-sm text-white/60">
           <button
             onClick={handleLike}
-            className={`flex items-center gap-1 ${isLiked ? "text-yellow-400" : "hover:text-yellow-400"}`}
+            className={`flex items-center gap-1 ${
+              isLiked ? "text-primary-mint" : "hover:text-primary-mint transition-colors duration-300"
+            }`}
           >
             <span className="text-lg">{isLiked ? "⭐" : "☆"}</span>
             <span>{likeCount}</span>

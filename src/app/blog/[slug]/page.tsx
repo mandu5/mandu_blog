@@ -96,10 +96,10 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
 
   if (!post) {
     return (
-      <div className="min-h-screen pt-20" style={{ backgroundColor: "#171717" }}>
+      <div className="min-h-screen pt-20">
         <div className="max-w-4xl mx-auto px-4 py-8">
           <h1 className="text-2xl font-bold mb-4 text-white">블로그 포스트를 찾을 수 없습니다.</h1>
-          <Link href="/blog" className="text-blue-400 hover:text-blue-300">
+          <Link href="/blog" className="text-primary-mint hover:text-primary-mint/80 transition-colors">
             블로그 목록으로 돌아가기
           </Link>
         </div>
@@ -235,7 +235,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
       }
       if (line.startsWith("# ")) {
         return (
-          <h1 key={index} id="intro" className="text-3xl font-bold mb-4 mt-8 text-gray-900 dark:text-white">
+          <h1 key={index} id="intro" className="text-3xl font-bold mb-4 mt-8 text-white">
             {line.substring(2)}
           </h1>
         );
@@ -247,7 +247,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
           .replace(/[^a-z0-9가-힣]/g, "-")
           .replace(/-+/g, "-");
         return (
-          <h2 key={index} id={headingId} className="text-2xl font-bold mb-3 mt-6 text-gray-900 dark:text-white">
+          <h2 key={index} id={headingId} className="text-2xl font-bold mb-3 mt-6 text-white">
             {headingText}
           </h2>
         );
@@ -259,17 +259,14 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
           .replace(/[^a-z0-9가-힣]/g, "-")
           .replace(/-+/g, "-");
         return (
-          <h3 key={index} id={headingId} className="text-xl font-bold mb-2 mt-4 text-gray-900 dark:text-white">
+          <h3 key={index} id={headingId} className="text-xl font-bold mb-2 mt-4 text-white">
             {headingText}
           </h3>
         );
       }
       if (line.startsWith("> ")) {
         return (
-          <blockquote
-            key={index}
-            className="border-l-4 border-blue-500 pl-4 my-4 italic text-gray-700 dark:text-gray-300"
-          >
+          <blockquote key={index} className="border-l-4 border-primary-mint pl-4 my-4 italic text-white/80">
             {line.substring(2)}
           </blockquote>
         );
@@ -279,20 +276,20 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ params }) => {
       }
       if (line.startsWith("- ")) {
         return (
-          <li key={index} className="ml-4 text-gray-700 dark:text-gray-300">
+          <li key={index} className="ml-4 text-white/80">
             {line.substring(2)}
           </li>
         );
       }
       if (line.match(/^\d+\./)) {
         return (
-          <li key={index} className="ml-4 text-gray-700 dark:text-gray-300">
+          <li key={index} className="ml-4 text-white/80">
             {line}
           </li>
         );
       }
       return (
-        <p key={index} className="mb-4 leading-relaxed text-gray-700 dark:text-gray-300">
+        <p key={index} className="mb-4 leading-relaxed text-white/80">
           {line}
         </p>
       );

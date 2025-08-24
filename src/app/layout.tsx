@@ -10,6 +10,7 @@ import LoadingScreen from "@/components/ui/LoadingScreen";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   title: "MANDU - AI Engineer Portfolio",
   description:
     "AI Engineer and Machine Learning Developer Portfolio showcasing cutting-edge projects and expertise in artificial intelligence.",

@@ -72,6 +72,7 @@ export interface BlogPost {
   date: string;
   excerpt: string;
   slug: string;
+  image?: string;
   content?: string;
   tags?: string[];
   author?: {
