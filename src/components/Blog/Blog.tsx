@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { BLOG_POSTS_DATA } from "@/constants";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -139,21 +139,25 @@ const Blog: React.FC = () => {
         </div>
       )}
 
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-4xl mx-auto px-8">
         {/* 헤더 탭 */}
-        <div className="flex items-center gap-8 mb-8 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center gap-8 mb-12 border-b border-gray-200 dark:border-gray-700">
           <button
             onClick={() => setActiveTab("overview")}
-            className={`pb-4 px-2 text-gray-400 hover:text-gray-900 dark:hover:text-white ${
-              activeTab === "overview" ? "text-gray-900 dark:text-white border-b-2 border-blue-500" : ""
+            className={`pb-4 px-2 text-gray-400 hover:text-gray-900 dark:hover:text-white font-light ${
+              activeTab === "overview"
+                ? "text-gray-900 dark:text-white border-b-2 border-gray-400 dark:border-gray-600"
+                : ""
             }`}
           >
             {t("blog.overview")}
           </button>
           <button
             onClick={() => setActiveTab("articles")}
-            className={`pb-4 px-2 text-gray-400 hover:text-gray-900 dark:hover:text-white flex items-center gap-2 ${
-              activeTab === "articles" ? "text-gray-900 dark:text-white border-b-2 border-blue-500" : ""
+            className={`pb-4 px-2 text-gray-400 hover:text-gray-900 dark:hover:text-white flex items-center gap-2 font-light ${
+              activeTab === "articles"
+                ? "text-gray-900 dark:text-white border-b-2 border-gray-400 dark:border-gray-600"
+                : ""
             }`}
           >
             {t("blog.articles")}

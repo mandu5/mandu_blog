@@ -54,44 +54,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <LanguageProvider>
             <LoadingScreen />
-            <div className="min-h-screen bg-gradient-to-br from-primary-navy via-primary-navy to-primary-mint dark:from-background-dark dark:via-background-dark dark:to-background-dark transition-all duration-300">
-              {/* Animated Background Elements */}
-              <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                {/* Floating Clouds */}
-                <div
-                  className="absolute top-20 left-10 w-20 h-12 bg-white/10 rounded-full animate-float"
-                  style={{ animationDelay: "0s" }}
-                ></div>
-                <div
-                  className="absolute top-40 right-20 w-16 h-10 bg-white/10 rounded-full animate-float"
-                  style={{ animationDelay: "2s" }}
-                ></div>
-                <div
-                  className="absolute top-60 left-1/4 w-24 h-14 bg-white/10 rounded-full animate-float"
-                  style={{ animationDelay: "4s" }}
-                ></div>
-
-                {/* Moving Vehicles */}
-                <div className="absolute bottom-20 left-0 w-16 h-8 bg-primary-mint/20 rounded-full animate-car-move"></div>
-                <div
-                  className="absolute bottom-32 left-0 w-20 h-6 bg-primary-mint/20 rounded-full animate-boat-move"
-                  style={{ animationDelay: "5s" }}
-                ></div>
-                <div
-                  className="absolute bottom-40 left-0 w-12 h-4 bg-primary-mint/20 rounded-full animate-plane-move"
-                  style={{ animationDelay: "10s" }}
-                ></div>
-
-                {/* Water Waves */}
-                <div className="absolute bottom-0 left-0 w-full h-8 bg-primary-mint/10 animate-wave"></div>
-                <div
-                  className="absolute bottom-2 left-0 w-full h-6 bg-primary-mint/5 animate-wave-reverse"
-                  style={{ animationDelay: "1s" }}
-                ></div>
-              </div>
-
+            <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
               <Header />
-              <main className="relative z-10">{children}</main>
+              <main>{children}</main>
               <Footer />
             </div>
           </LanguageProvider>
