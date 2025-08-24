@@ -21,9 +21,28 @@
 }
 
 body {
-  @apply font-sans text-gray-900 font-normal leading-relaxed bg-white;
+  @apply font-sans text-gray-900 font-normal leading-relaxed bg-white dark:bg-gray-900;
   -webkit-tap-highlight-color: transparent;
   touch-action: var(--touch-action);
+}
+
+/* Ensure background color extends to all elements */
+html,
+body {
+  background-color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background-color: #111827;
+  }
+}
+
+/* Override for dark mode */
+.dark html,
+.dark body {
+  background-color: #111827;
 }
 
 html {

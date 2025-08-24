@@ -322,7 +322,11 @@ const Blog: React.FC = () => {
                 {BLOG_POSTS_DATA.sort((a, b) => (isClient ? (likes[b.id]?.count || 0) - (likes[a.id]?.count || 0) : 0))
                   .slice(0, 2)
                   .map((post) => (
-                    <Link key={post.id} href={`/blog/${post.slug}`} className="block group border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0">
+                    <Link
+                      key={post.id}
+                      href={`/blog/${post.slug}`}
+                      className="block group border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0"
+                    >
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
                         <h4 className="text-xl font-light text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
                           {post.title}
@@ -361,7 +365,11 @@ const Blog: React.FC = () => {
                 {BLOG_POSTS_DATA.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                   .slice(0, 2)
                   .map((post) => (
-                    <Link key={post.id} href={`/blog/${post.slug}`} className="block group border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0">
+                    <Link
+                      key={post.id}
+                      href={`/blog/${post.slug}`}
+                      className="block group border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0"
+                    >
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
                         <h4 className="text-xl font-light text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
                           {post.title}

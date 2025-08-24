@@ -132,7 +132,8 @@ const TRANSLATIONS = {
     // Career
     "career.rok.company": "대한민국 국방부",
     "career.rok.position": "UI/UX 디자이너",
-    "career.rok.achievement1": "코드 최소화, 지연 로딩, 이미지 압축을 사용하여 웹사이트 구조를 재설계하여 페이지 로드 시간을 40% 단축했습니다.",
+    "career.rok.achievement1":
+      "코드 최소화, 지연 로딩, 이미지 압축을 사용하여 웹사이트 구조를 재설계하여 페이지 로드 시간을 40% 단축했습니다.",
     "career.rok.achievement2": "사용자 유지율과 참여도를 향상시키는 완전 반응형 UI 디자인을 구현했습니다.",
 
     // Awards
@@ -142,9 +143,12 @@ const TRANSLATIONS = {
     // Certificates
     "certificates.google.title": "구글 머신러닝 부트캠프",
     "certificates.google.issuer": "구글 개발자 그룹",
-    "certificates.google.desc1": "고급 특성 엔지니어링과 하이퍼파라미터 튜닝을 통해 중고차 가격 예측 회귀 모델을 개발하여 정확도를 33% 향상시켰습니다.",
-    "certificates.google.desc2": "Python과 TensorFlow를 사용하여 금융 어드바이저 모델을 배포하여 1초 미만의 응답 시간으로 확장 가능한 프로덕션 API 통합을 달성했습니다.",
-    "certificates.google.desc3": "scikit-learn, XGBoost, LightGBM을 활용하여 실제 데이터셋에서 데이터 기반 의사결정을 추진했습니다.",
+    "certificates.google.desc1":
+      "고급 특성 엔지니어링과 하이퍼파라미터 튜닝을 통해 중고차 가격 예측 회귀 모델을 개발하여 정확도를 33% 향상시켰습니다.",
+    "certificates.google.desc2":
+      "Python과 TensorFlow를 사용하여 금융 어드바이저 모델을 배포하여 1초 미만의 응답 시간으로 확장 가능한 프로덕션 API 통합을 달성했습니다.",
+    "certificates.google.desc3":
+      "scikit-learn, XGBoost, LightGBM을 활용하여 실제 데이터셋에서 데이터 기반 의사결정을 추진했습니다.",
     "certificates.deeplearning.title": "딥러닝 전문화 과정",
     "certificates.deeplearning.issuer": "DeepLearning.ai",
     "certificates.kakao.title": "카카오 엔터프라이즈 군 AI-SW 과정",
@@ -153,15 +157,18 @@ const TRANSLATIONS = {
     "certificates.ibm.issuer": "IBM",
     "certificates.neordinary.title": "Ne(O)rdinary 해커톤",
     "certificates.neordinary.issuer": "CMC 10기 앱런칭 동아리, 소프트스퀘어드",
-    "certificates.neordinary.desc1": "소규모 극장을 위한 일정 공유 플랫폼을 개발하여 사용자 선호도 충돌을 해결하고 연극 일정 접근성을 개선했습니다.",
+    "certificates.neordinary.desc1":
+      "소규모 극장을 위한 일정 공유 플랫폼을 개발하여 사용자 선호도 충돌을 해결하고 연극 일정 접근성을 개선했습니다.",
 
     // Projects
     "projects.financial.title": "금융 어드바이저 챗봇",
     "projects.financial.organization": "구글 머신러닝 부트캠프",
-    "projects.financial.description": "고급 언어 모델을 사용하여 개인화된 투자 추천을 제공하는 AI 기반 금융 자문 시스템을 개발했습니다. 효율적인 파인튜닝 기법과 양자화 방법을 구현하여 모델 성능을 최적화하고 계산 오버헤드를 줄였습니다.",
+    "projects.financial.description":
+      "고급 언어 모델을 사용하여 개인화된 투자 추천을 제공하는 AI 기반 금융 자문 시스템을 개발했습니다. 효율적인 파인튜닝 기법과 양자화 방법을 구현하여 모델 성능을 최적화하고 계산 오버헤드를 줄였습니다.",
     "projects.jaksim.title": "작심친구",
     "projects.jaksim.organization": "소프트스퀘어드",
-    "projects.jaksim.description": "그룹 자기계발 챌린지를 위한 크로스 플랫폼 React Native 애플리케이션의 프론트엔드 개발을 주도했습니다. 고급 데이터 시각화와 사용자 인증 시스템을 구현하여 사용자 경험과 참여 지표를 향상시켰습니다.",
+    "projects.jaksim.description":
+      "그룹 자기계발 챌린지를 위한 크로스 플랫폼 React Native 애플리케이션의 프론트엔드 개발을 주도했습니다. 고급 데이터 시각화와 사용자 인증 시스템을 구현하여 사용자 경험과 참여 지표를 향상시켰습니다.",
   },
   en: {
     // Home page
@@ -275,19 +282,24 @@ const TRANSLATIONS = {
     // Career
     "career.rok.company": "R.O.K, MND",
     "career.rok.position": "UI/UX Designer",
-    "career.rok.achievement1": "Re-architected website structure using code minification, lazy loading, and image compression to reduce page load times by 40%.",
+    "career.rok.achievement1":
+      "Re-architected website structure using code minification, lazy loading, and image compression to reduce page load times by 40%.",
     "career.rok.achievement2": "Implemented fully responsive UI designs that improved user retention and engagement.",
 
     // Awards
     "awards.lg.name": "LG AImers",
-    "awards.lg.description": "LG AI Research - Ranked in the top 5.5% among 1,400 participants in an Anomaly Detection competition",
+    "awards.lg.description":
+      "LG AI Research - Ranked in the top 5.5% among 1,400 participants in an Anomaly Detection competition",
 
     // Certificates
     "certificates.google.title": "Google Machine Learning Bootcamp",
     "certificates.google.issuer": "Google Developers Group",
-    "certificates.google.desc1": "Engineered a regression model for used car price prediction, increasing accuracy by 33% through advanced feature engineering and hyperparameter tuning.",
-    "certificates.google.desc2": "Deployed a financial advisor model using Python and TensorFlow achieving scalable production API integration with sub-second response times.",
-    "certificates.google.desc3": "Utilized scikit-learn, XGBoost, and LightGBM to drive data-driven decision-making on real-world datasets.",
+    "certificates.google.desc1":
+      "Engineered a regression model for used car price prediction, increasing accuracy by 33% through advanced feature engineering and hyperparameter tuning.",
+    "certificates.google.desc2":
+      "Deployed a financial advisor model using Python and TensorFlow achieving scalable production API integration with sub-second response times.",
+    "certificates.google.desc3":
+      "Utilized scikit-learn, XGBoost, and LightGBM to drive data-driven decision-making on real-world datasets.",
     "certificates.deeplearning.title": "Deep Learning Specialization",
     "certificates.deeplearning.issuer": "DeepLearning.ai",
     "certificates.kakao.title": "Kakao Enterprise Military AI-SW Course",
@@ -296,15 +308,18 @@ const TRANSLATIONS = {
     "certificates.ibm.issuer": "IBM",
     "certificates.neordinary.title": "Ne(O)rdinary Hackathon",
     "certificates.neordinary.issuer": "CMC 10th App Launching Club, SoftSquared",
-    "certificates.neordinary.desc1": "Developed a schedule-sharing platform for small theaters, resolving conflicting user preferences and improving access to play schedules.",
+    "certificates.neordinary.desc1":
+      "Developed a schedule-sharing platform for small theaters, resolving conflicting user preferences and improving access to play schedules.",
 
     // Projects
     "projects.financial.title": "Financial Advisor Chatbot",
     "projects.financial.organization": "Google Machine Learning Bootcamp",
-    "projects.financial.description": "Developed an AI-driven financial advisory system using advanced language models to deliver personalized investment recommendations. Implemented efficient fine-tuning techniques and quantization methods to optimize model performance and reduce computational overhead.",
+    "projects.financial.description":
+      "Developed an AI-driven financial advisory system using advanced language models to deliver personalized investment recommendations. Implemented efficient fine-tuning techniques and quantization methods to optimize model performance and reduce computational overhead.",
     "projects.jaksim.title": "JakSimFriend",
     "projects.jaksim.organization": "SoftSquared",
-    "projects.jaksim.description": "Led front-end development of a cross-platform React Native application for group self-improvement challenges. Implemented advanced data visualization and user authentication systems to enhance user experience and engagement metrics.",
+    "projects.jaksim.description":
+      "Led front-end development of a cross-platform React Native application for group self-improvement challenges. Implemented advanced data visualization and user authentication systems to enhance user experience and engagement metrics.",
   },
 } as const;
 

@@ -24,52 +24,32 @@ export default function LoadingScreen() {
   if (!isLoading) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-primary-navy via-primary-navy to-primary-mint dark:from-background-dark dark:via-background-dark dark:to-background-dark">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900">
       <div className="text-center">
         {/* Logo Animation */}
         <div className="mb-8">
-          <div className="text-4xl font-bold text-white mb-4 animate-bounce-gentle">MANDU</div>
-          <div className="text-lg text-white/80 animate-pulse">AI Engineer Portfolio</div>
+          <div className="text-5xl font-light text-gray-900 dark:text-white mb-4">
+            Mandu <span className="text-4xl">🥟</span>
+          </div>
+          <div className="text-lg text-gray-600 dark:text-gray-400 font-light">AI Engineer</div>
         </div>
 
         {/* Loading Spinner */}
         <div className="relative">
-          <div className="w-16 h-16 border-4 border-white/20 border-t-white rounded-full animate-loading-spin mx-auto"></div>
-          <div
-            className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-primary-mint rounded-full animate-loading-spin mx-auto"
-            style={{ animationDirection: "reverse", animationDuration: "1.5s" }}
-          ></div>
+          <div className="w-12 h-12 border-2 border-gray-300 dark:border-gray-600 border-t-gray-900 dark:border-t-white rounded-full animate-spin mx-auto"></div>
         </div>
 
         {/* Loading Text */}
-        <div className="mt-6 text-white/60 animate-loading-pulse">Loading amazing things...</div>
+        <div className="mt-6 text-gray-500 dark:text-gray-500 font-light">Loading...</div>
 
         {/* Progress Bar */}
-        <div className="mt-4 w-48 h-1 bg-white/20 rounded-full overflow-hidden mx-auto">
+        <div className="mt-4 w-48 h-px bg-gray-200 dark:bg-gray-700 overflow-hidden mx-auto">
           <div
-            className="h-full bg-primary-mint rounded-full transition-all duration-2000 ease-out"
+            className="h-full bg-gray-900 dark:bg-white transition-all duration-2000 ease-out"
             style={{ width: "0%" }}
             id="progress-bar"
           ></div>
         </div>
-      </div>
-
-      {/* Background Animation Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Floating Elements */}
-        <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-white/20 rounded-full animate-float"></div>
-        <div
-          className="absolute top-1/3 right-1/4 w-3 h-3 bg-primary-mint/30 rounded-full animate-float"
-          style={{ animationDelay: "1s" }}
-        ></div>
-        <div
-          className="absolute bottom-1/4 left-1/3 w-5 h-5 bg-white/15 rounded-full animate-float"
-          style={{ animationDelay: "2s" }}
-        ></div>
-        <div
-          className="absolute bottom-1/3 right-1/3 w-2 h-2 bg-primary-mint/25 rounded-full animate-float"
-          style={{ animationDelay: "0.5s" }}
-        ></div>
       </div>
     </div>
   );
