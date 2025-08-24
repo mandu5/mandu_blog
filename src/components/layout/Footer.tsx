@@ -38,7 +38,7 @@ export default function Footer() {
 
         {/* Site Info */}
         <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-          <p className="text-xs text-gray-400 dark:text-gray-600">Designed and developed by Mandu.</p>
+          <p className="text-xs text-gray-400 dark:text-gray-600">Designed and developed with 💝 by Mandu 🥟</p>
         </div>
       </div>
     </footer>

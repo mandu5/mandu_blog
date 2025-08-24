@@ -12,24 +12,28 @@ export default function HomePage() {
       title: t("navigation.links"),
       description: "Contact / Social / Programming",
       href: "/links",
+      icon: "🔗",
     },
     {
       id: "about",
       title: t("navigation.about"),
       description: "Resume / Experience / Skills",
       href: "/about",
+      icon: "👋",
     },
     {
       id: "projects",
       title: t("navigation.projects"),
       description: "Portfolio / Work / Achievements",
       href: "/projects",
+      icon: "💻",
     },
     {
       id: "blog",
       title: t("navigation.blog"),
       description: "Articles / Thoughts / Learning",
       href: "/blog",
+      icon: "✍️",
     },
   ];
 
@@ -38,12 +42,12 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center px-8 text-center">
         <div className="max-w-4xl mx-auto space-y-8">
-          {/* Main Title */}
-          <div className="space-y-4">
-            <h1 className="text-6xl md:text-8xl font-light tracking-tight">Mandu</h1>
-            <div className="w-24 h-px bg-gray-300 dark:bg-gray-700 mx-auto"></div>
-            <p className="text-xl md:text-2xl font-light text-gray-600 dark:text-gray-400">AI Engineer</p>
-          </div>
+                      {/* Main Title */}
+            <div className="space-y-4">
+              <h1 className="text-6xl md:text-8xl font-light tracking-tight">Mandu <span className="text-4xl md:text-6xl">🥟</span></h1>
+              <div className="w-24 h-px bg-gray-300 dark:bg-gray-700 mx-auto"></div>
+              <p className="text-xl md:text-2xl font-light text-gray-600 dark:text-gray-400">AI Engineer</p>
+            </div>
 
           {/* Scroll Indicator */}
           <div className="mt-16">
@@ -62,10 +66,11 @@ export default function HomePage() {
                 <div className="border-b border-gray-200 dark:border-gray-800 pb-8 transition-all duration-300 group-hover:border-gray-400 dark:group-hover:border-gray-600">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div className="mb-4 md:mb-0">
-                      <h2 className="text-4xl md:text-5xl font-light mb-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
+                      <h2 className="text-4xl md:text-5xl font-light mb-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors flex items-center gap-4">
+                        <span className="text-3xl md:text-4xl">{section.icon}</span>
                         {section.title}
                       </h2>
-                      <p className="text-lg text-gray-600 dark:text-gray-400 font-light">{section.description}</p>
+                      <p className="text-lg text-gray-600 dark:text-gray-400 font-light ml-16 md:ml-20">{section.description}</p>
                     </div>
                     <div className="text-2xl opacity-0 group-hover:opacity-100 transition-opacity">→</div>
                   </div>

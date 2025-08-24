@@ -23,11 +23,17 @@ export default function AboutPage() {
           <div className="border-b border-gray-200 dark:border-gray-800 pb-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div>
-                <h3 className="text-2xl font-light text-gray-900 dark:text-white mb-6">{t("about.summary")}</h3>
+                <h3 className="text-2xl font-light text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                  <span className="text-xl">👨‍💻</span>
+                  {t("about.summary")}
+                </h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-light">{t("about.summaryText")}</p>
               </div>
               <div>
-                <h3 className="text-2xl font-light text-gray-900 dark:text-white mb-6">{t("about.skills")}</h3>
+                <h3 className="text-2xl font-light text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                  <span className="text-xl">🛠️</span>
+                  {t("about.skills")}
+                </h3>
                 <div className="flex flex-wrap gap-3">
                   {["Machine Learning", "Deep Learning", "Python", "React", "TypeScript", "Next.js"].map((skill) => (
                     <span
@@ -45,16 +51,19 @@ export default function AboutPage() {
 
         {/* Education Section */}
         <section className="mb-20">
-          <h2 className="text-3xl font-light text-gray-900 dark:text-white mb-12">{t("about.education")}</h2>
+          <h2 className="text-3xl font-light text-gray-900 dark:text-white mb-12 flex items-center gap-3">
+            <span className="text-2xl">🎓</span>
+            {t("about.education")}
+          </h2>
           <div className="space-y-8">
             {EDUCATION_DATA.map((education, index) => (
               <div key={index} className="border-b border-gray-200 dark:border-gray-800 pb-8 last:border-b-0">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                  <h3 className="text-xl font-light text-gray-900 dark:text-white">{education.institution}</h3>
+                  <h3 className="text-xl font-light text-gray-900 dark:text-white">{t(education.institution)}</h3>
                   <span className="text-gray-500 dark:text-gray-500 font-light">{education.period}</span>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 mb-2 font-light">{education.degree}</p>
-                <p className="text-gray-500 dark:text-gray-500 text-sm font-light">{education.location}</p>
+                <p className="text-gray-600 dark:text-gray-400 mb-2 font-light">{t(education.degree)}</p>
+                <p className="text-gray-500 dark:text-gray-500 text-sm font-light">{t(education.location)}</p>
               </div>
             ))}
           </div>
@@ -62,15 +71,18 @@ export default function AboutPage() {
 
         {/* Experience Section */}
         <section className="mb-20">
-          <h2 className="text-3xl font-light text-gray-900 dark:text-white mb-12">{t("about.experience")}</h2>
+          <h2 className="text-3xl font-light text-gray-900 dark:text-white mb-12 flex items-center gap-3">
+            <span className="text-2xl">💼</span>
+            {t("about.experience")}
+          </h2>
           <div className="space-y-8">
             {CAREER_DATA.map((career, index) => (
               <div key={index} className="border-b border-gray-200 dark:border-gray-800 pb-8 last:border-b-0">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                  <h3 className="text-xl font-light text-gray-900 dark:text-white">{career.company}</h3>
+                  <h3 className="text-xl font-light text-gray-900 dark:text-white">{t(career.company)}</h3>
                   <span className="text-gray-500 dark:text-gray-500 font-light">{career.period}</span>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 mb-3 font-light">{career.position}</p>
+                <p className="text-gray-600 dark:text-gray-400 mb-3 font-light">{t(career.position)}</p>
                 {career.team && (
                   <p className="text-gray-500 dark:text-gray-500 text-sm mb-3 font-light">{career.team}</p>
                 )}
@@ -81,7 +93,7 @@ export default function AboutPage() {
                       className="text-gray-600 dark:text-gray-400 text-sm flex items-start font-light"
                     >
                       <span className="text-gray-400 dark:text-gray-600 mr-3">•</span>
-                      {achievement}
+                      {t(achievement)}
                     </li>
                   ))}
                 </ul>
@@ -92,15 +104,18 @@ export default function AboutPage() {
 
         {/* Certificates Section */}
         <section className="mb-20">
-          <h2 className="text-3xl font-light text-gray-900 dark:text-white mb-12">{t("about.certificates")}</h2>
+          <h2 className="text-3xl font-light text-gray-900 dark:text-white mb-12 flex items-center gap-3">
+            <span className="text-2xl">📜</span>
+            {t("about.certificates")}
+          </h2>
           <div className="space-y-8">
             {CERTIFICATES_DATA.map((certificate, index) => (
               <div key={index} className="border-b border-gray-200 dark:border-gray-800 pb-8 last:border-b-0">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                  <h3 className="text-xl font-light text-gray-900 dark:text-white">{certificate.title}</h3>
+                  <h3 className="text-xl font-light text-gray-900 dark:text-white">{t(certificate.title)}</h3>
                   <span className="text-gray-500 dark:text-gray-500 font-light">{certificate.period}</span>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 mb-3 font-light">{certificate.issuer}</p>
+                <p className="text-gray-600 dark:text-gray-400 mb-3 font-light">{t(certificate.issuer)}</p>
                 {certificate.description && certificate.description.length > 0 && (
                   <ul className="space-y-2">
                     {certificate.description.map((desc, descIndex) => (
@@ -109,7 +124,7 @@ export default function AboutPage() {
                         className="text-gray-600 dark:text-gray-400 text-sm flex items-start font-light"
                       >
                         <span className="text-gray-400 dark:text-gray-600 mr-3">•</span>
-                        {desc}
+                        {t(desc)}
                       </li>
                     ))}
                   </ul>
@@ -121,15 +136,18 @@ export default function AboutPage() {
 
         {/* Awards Section */}
         <section className="">
-          <h2 className="text-3xl font-light text-gray-900 dark:text-white mb-12">{t("about.awards")}</h2>
+          <h2 className="text-3xl font-light text-gray-900 dark:text-white mb-12 flex items-center gap-3">
+            <span className="text-2xl">🏆</span>
+            {t("about.awards")}
+          </h2>
           <div className="space-y-8">
             {AWARDS_DATA.map((award, index) => (
               <div key={index} className="border-b border-gray-200 dark:border-gray-800 pb-8 last:border-b-0">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                  <h3 className="text-xl font-light text-gray-900 dark:text-white">{award.name}</h3>
+                  <h3 className="text-xl font-light text-gray-900 dark:text-white">{t(award.name)}</h3>
                   <span className="text-gray-500 dark:text-gray-500 font-light">{award.date.split(" ")[0]}</span>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 font-light">{award.description}</p>
+                <p className="text-gray-600 dark:text-gray-400 font-light">{t(award.description)}</p>
               </div>
             ))}
           </div>

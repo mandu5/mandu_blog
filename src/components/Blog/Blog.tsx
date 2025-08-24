@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { BLOG_POSTS_DATA } from "@/constants";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { formatRelativeDate, getCommentCount, getLikeInfo } from "@/lib/utils";
+import { formatRelativeDate, getLikeInfo } from "@/lib/utils";
 import BlogPostCard from "@/components/Blog/BlogPostCard";
 import useOutsideClick from "@/hooks/useOutsideClick";
 
@@ -171,20 +171,20 @@ const Blog: React.FC = () => {
         {activeTab === "overview" && (
           <div className="space-y-8">
             {/* Activity Section */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t("blog.activities")}</h3>
+            <div className="border-b border-gray-200 dark:border-gray-800 pb-8 mb-8">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-light text-gray-900 dark:text-white">{t("blog.activities")}</h3>
                 <div className="relative" ref={yearDropdownRef}>
                   <button
                     onClick={() => setShowYearDropdown(!showYearDropdown)}
-                    className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center gap-2"
+                    className="px-4 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 flex items-center gap-2 font-light"
                   >
                     {selectedYear}
                     <span className="text-sm">▼</span>
                   </button>
 
                   {showYearDropdown && (
-                    <div className="absolute right-0 mt-2 w-20 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg z-10">
+                    <div className="absolute right-0 mt-2 w-20 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 shadow-lg z-10">
                       {[2023, 2024, 2025, 2026].map((year) => (
                         <button
                           key={year}
@@ -192,9 +192,7 @@ const Blog: React.FC = () => {
                             setSelectedYear(year);
                             setShowYearDropdown(false);
                           }}
-                          className={`w-full px-4 py-2 text-left text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ${
-                            year === 2023 ? "rounded-t-lg" : ""
-                          } ${year === 2026 ? "rounded-b-lg" : ""}`}
+                          className={`w-full px-4 py-2 text-left text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 font-light`}
                         >
                           {year}
                         </button>
@@ -305,96 +303,78 @@ const Blog: React.FC = () => {
             </div>
 
             {/* Popular Articles Section */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
+            <div className="border-b border-gray-200 dark:border-gray-800 pb-8 mb-8">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t("blog.popularArticles")}</h3>
+                <h3 className="text-2xl font-light text-gray-900 dark:text-white">{t("blog.popularArticles")}</h3>
                 <button
                   onClick={() => {
                     setActiveTab("articles");
                     setSortOrder("popular");
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
-                  className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
+                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-sm font-light transition-colors"
                 >
-                  {t("blog.more")}
+                  {t("blog.more")} →
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-6">
                 {BLOG_POSTS_DATA.sort((a, b) => (isClient ? (likes[b.id]?.count || 0) - (likes[a.id]?.count || 0) : 0))
                   .slice(0, 2)
                   .map((post) => (
-                    <Link key={post.id} href={`/blog/${post.slug}`} className="block">
-                      <div className="bg-gray-50 dark:bg-gray-700 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                        <div className="h-32 bg-gray-200 dark:bg-gray-600 flex items-center justify-center">
-                          <span className="text-gray-400 dark:text-gray-500 text-2xl">📄</span>
-                        </div>
-                        <div className="p-4">
-                          <h4 className="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2 hover:text-blue-600 dark:hover:text-blue-400">
-                            {post.title}
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">{post.excerpt}</p>
-                          <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-                            <div className="flex items-center gap-1">
-                              <span className="text-yellow-500">★</span>
-                              <span>{isClient ? likes[post.id]?.count || 0 : 0}</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <span>💬</span>
-                              <span>{isClient ? getCommentCount(post.id) : 0}</span>
-                            </div>
-                            <span>{formatRelativeDate(post.date)}</span>
+                    <Link key={post.id} href={`/blog/${post.slug}`} className="block group border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                        <h4 className="text-xl font-light text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
+                          {post.title}
+                        </h4>
+                        <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 font-light">
+                          <div className="flex items-center gap-1">
+                            <span>★</span>
+                            <span>{isClient ? likes[post.id]?.count || 0 : 0}</span>
                           </div>
+                          <span>{formatRelativeDate(post.date)}</span>
                         </div>
                       </div>
+                      <p className="text-gray-600 dark:text-gray-400 font-light">{post.excerpt}</p>
                     </Link>
                   ))}
               </div>
             </div>
 
             {/* Recent Articles Section */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
+            <div className="">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t("blog.recentArticles")}</h3>
+                <h3 className="text-2xl font-light text-gray-900 dark:text-white">{t("blog.recentArticles")}</h3>
                 <button
                   onClick={() => {
                     setActiveTab("articles");
                     setSortOrder("latest");
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
-                  className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
+                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-sm font-light transition-colors"
                 >
-                  {t("blog.more")}
+                  {t("blog.more")} →
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-6">
                 {BLOG_POSTS_DATA.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                   .slice(0, 2)
                   .map((post) => (
-                    <Link key={post.id} href={`/blog/${post.slug}`} className="block">
-                      <div className="bg-gray-50 dark:bg-gray-700 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                        <div className="h-32 bg-gray-200 dark:bg-gray-600 flex items-center justify-center">
-                          <span className="text-gray-400 dark:text-gray-500 text-2xl">📄</span>
-                        </div>
-                        <div className="p-4">
-                          <h4 className="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2 hover:text-blue-600 dark:hover:text-blue-400">
-                            {post.title}
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">{post.excerpt}</p>
-                          <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-                            <div className="flex items-center gap-1">
-                              <span className="text-yellow-500">★</span>
-                              <span>{isClient ? likes[post.id]?.count || 0 : 0}</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <span>💬</span>
-                              <span>{isClient ? getCommentCount(post.id) : 0}</span>
-                            </div>
-                            <span>{formatRelativeDate(post.date)}</span>
+                    <Link key={post.id} href={`/blog/${post.slug}`} className="block group border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                        <h4 className="text-xl font-light text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
+                          {post.title}
+                        </h4>
+                        <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 font-light">
+                          <div className="flex items-center gap-1">
+                            <span>★</span>
+                            <span>{isClient ? likes[post.id]?.count || 0 : 0}</span>
                           </div>
+                          <span>{formatRelativeDate(post.date)}</span>
                         </div>
                       </div>
+                      <p className="text-gray-600 dark:text-gray-400 font-light">{post.excerpt}</p>
                     </Link>
                   ))}
               </div>

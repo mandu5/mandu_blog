@@ -56,35 +56,35 @@ export const SOCIAL_LINKS: SocialLink[] = [
 // Education Data
 export const EDUCATION_DATA: EducationItem[] = [
   {
-    institution: "Pennsylvania State University",
-    degree: "B.S. in Software Engineering",
+    institution: "education.psu.institution",
+    degree: "education.psu.degree",
     period: "2024 - 2026",
-    location: "Pennsylvania, United States",
+    location: "education.psu.location",
   },
   {
-    institution: "Xi'an Jiaotong Liverpool University",
-    degree: "B.E. in Computer Science and Technology",
+    institution: "education.xjtlu.institution",
+    degree: "education.xjtlu.degree",
     period: "2020 - 2022",
-    location: "Suzhou, Jiangsu, China",
+    location: "education.xjtlu.location",
   },
   {
-    institution: "Indus International School Bangalore",
-    degree: "High School Diploma, International Baccalaureate",
+    institution: "education.indus.institution",
+    degree: "education.indus.degree",
     period: "2011 - 2019",
-    location: "Bangalore, India",
+    location: "education.indus.location",
   },
 ];
 
 // Career Data
 export const CAREER_DATA: CareerItem[] = [
   {
-    company: "R.O.K, MND",
-    position: "UI/UX Designer",
+    company: "career.rok.company",
+    position: "career.rok.position",
     period: "08/2022 - 01/2024",
     team: "",
     achievements: [
-      "Re-architected website structure using code minification, lazy loading, and image compression to reduce page load times by 40%.",
-      "Implemented fully responsive UI designs that improved user retention and engagement.",
+      "career.rok.achievement1",
+      "career.rok.achievement2",
     ],
   },
 ];
@@ -92,48 +92,48 @@ export const CAREER_DATA: CareerItem[] = [
 // Awards Data
 export const AWARDS_DATA: AwardItem[] = [
   {
-    name: "LG AImers",
+    name: "awards.lg.name",
     date: "06/2024 - 08/2024",
-    description: "LG AI Research - Ranked in the top 5.5% among 1,400 participants in an Anomaly Detection competition",
+    description: "awards.lg.description",
   },
 ];
 
 // Certificates Data
 export const CERTIFICATES_DATA: CertificateItem[] = [
   {
-    title: "Google Machine Learning Bootcamp",
-    issuer: "Google Developers Group",
+    title: "certificates.google.title",
+    issuer: "certificates.google.issuer",
     period: "06/2024 - 10/2024",
     description: [
-      "Engineered a regression model for used car price prediction, increasing accuracy by 33% through advanced feature engineering and hyperparameter tuning.",
-      "Deployed a financial advisor model using Python and TensorFlow achieving scalable production API integration with sub-second response times.",
-      "Utilized scikit-learn, XGBoost, and LightGBM to drive data-driven decision-making on real-world datasets.",
+      "certificates.google.desc1",
+      "certificates.google.desc2",
+      "certificates.google.desc3",
     ],
   },
   {
-    title: "Deep Learning Specialization",
-    issuer: "DeepLearning.ai",
+    title: "certificates.deeplearning.title",
+    issuer: "certificates.deeplearning.issuer",
     period: "05/2024 - 08/2024",
     description: [],
   },
   {
-    title: "Kakao Enterprise Military AI-SW Course",
-    issuer: "Kakao",
+    title: "certificates.kakao.title",
+    issuer: "certificates.kakao.issuer",
     period: "09/2024 - 11/2024",
     description: [],
   },
   {
-    title: "IBM Data Science Specialization",
-    issuer: "IBM",
+    title: "certificates.ibm.title",
+    issuer: "certificates.ibm.issuer",
     period: "08/2023 - 10/2023",
     description: [],
   },
   {
-    title: "Ne(O)rdinary Hackathon",
-    issuer: "CMC 10th App Launching Club, SoftSquared",
+    title: "certificates.neordinary.title",
+    issuer: "certificates.neordinary.issuer",
     period: "04/2022 - 05/2022",
     description: [
-      "Developed a schedule-sharing platform for small theaters, resolving conflicting user preferences and improving access to play schedules.",
+      "certificates.neordinary.desc1",
     ],
   },
 ];
@@ -142,10 +142,9 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
 export const PROJECTS_DATA: Project[] = [
   {
     id: "financial-advisor-chatbot",
-    title: "Financial Advisor Chatbot",
-    organization: "Google Machine Learning Bootcamp",
-    description:
-      "Developed an AI-driven financial advisory system using advanced language models to deliver personalized investment recommendations. Implemented efficient fine-tuning techniques and quantization methods to optimize model performance and reduce computational overhead.",
+    title: "projects.financial.title",
+    organization: "projects.financial.organization",
+    description: "projects.financial.description",
     image: "/assets/images/project1.jpg",
     tags: ["Python", "TensorFlow", "Machine Learning", "NLP", "API Development"],
     link: "https://www.kaggle.com/models/mandu5/financial-advisor",
@@ -154,10 +153,9 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: "jaksimfriend",
-    title: "JakSimFriend",
-    organization: "SoftSquared",
-    description:
-      "Led front-end development of a cross-platform React Native application for group self-improvement challenges. Implemented advanced data visualization and user authentication systems to enhance user experience and engagement metrics.",
+    title: "projects.jaksim.title",
+    organization: "projects.jaksim.organization",
+    description: "projects.jaksim.description",
     image: "/assets/images/project2.jpg",
     tags: ["React Native", "JavaScript", "Data Visualization", "User Authentication"],
     link: "https://github.com/JakSimFriend/frontend",

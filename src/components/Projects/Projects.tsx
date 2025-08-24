@@ -15,11 +15,11 @@ function ProjectCard({ project }: ProjectCardProps) {
       {/* Project Header */}
       <div className="mb-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-          <h3 className="text-2xl font-light text-gray-900 dark:text-white">{project.title}</h3>
-          <span className="text-gray-500 dark:text-gray-500 font-light text-sm">{project.organization}</span>
+          <h3 className="text-2xl font-light text-gray-900 dark:text-white">{t(project.title)}</h3>
+          <span className="text-gray-500 dark:text-gray-500 font-light text-sm">{t(project.organization)}</span>
         </div>
 
-        <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-light">{project.description}</p>
+        <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-light">{t(project.description)}</p>
       </div>
 
       {/* Project Content */}
