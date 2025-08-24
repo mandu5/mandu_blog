@@ -1,121 +1,13 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { BLOG_POSTS_DATA } from "@/constants";
-import { BlogPost } from "@/types";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { getLikeInfo, toggleLike, formatRelativeDate, getCommentCount } from "@/lib/utils";
+import { formatRelativeDate, getCommentCount, getLikeInfo } from "@/lib/utils";
+import BlogPostCard from "@/components/Blog/BlogPostCard";
+import useOutsideClick from "@/hooks/useOutsideClick";
 
-interface BlogPostCardProps {
-  post: BlogPost;
-}
-
-const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
-  const [likeCount, setLikeCount] = useState(0);
-  const [commentCount, setCommentCount] = useState(0);
-  const [isLiked, setIsLiked] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-    // 서버에서 좋아요 정보 가져오기
-    const fetchLikeInfo = async () => {
-      const likeInfo = await getLikeInfo(post.id);
-      setLikeCount(likeInfo.count);
-      setIsLiked(likeInfo.isLiked);
-    };
-    fetchLikeInfo();
-    setCommentCount(getCommentCount(post.id));
-  }, [post.id]);
-
-  // 댓글 수와 좋아요 수를 주기적으로 업데이트
-  useEffect(() => {
-    if (!isClient) return;
-
-    const updateCounts = async () => {
-      const likeInfo = await getLikeInfo(post.id);
-      setLikeCount(likeInfo.count);
-      setIsLiked(likeInfo.isLiked);
-      setCommentCount(getCommentCount(post.id));
-    };
-
-    // 초기 업데이트
-    updateCounts();
-
-    // 주기적 업데이트 (5초마다)
-    const interval = setInterval(updateCounts, 5000);
-
-    return () => clearInterval(interval);
-  }, [post.id, isClient]);
-
-  const handleLike = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const result = await toggleLike(post.id);
-    setIsLiked(result.isLiked);
-    setLikeCount(result.count);
-  };
-
-  // 서버 사이드 렌더링 중에는 기본값 표시
-  if (!isClient) {
-    return (
-      <article className="flex items-start gap-4 py-6 border-b border-white/20 last:border-b-0">
-        {/* 콘텐츠 */}
-        <div className="flex-1">
-          <Link href={`/blog/${post.slug}`}>
-            <h2 className="text-xl font-bold mb-2 text-white hover:text-primary-mint transition-colors duration-300">
-              {post.title}
-            </h2>
-          </Link>
-          <p className="text-white/80 mb-3 leading-relaxed">{post.excerpt}</p>
-          {/* Meta Info */}
-          <div className="flex items-center gap-4 text-sm text-white/60">
-            <div className="flex items-center gap-1">
-              <span className="text-lg">☆</span>
-              <span>0</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <span className="text-lg">💬</span>
-              <span>0</span>
-            </div>
-            <span>{formatRelativeDate(post.date)}</span>
-          </div>
-        </div>
-      </article>
-    );
-  }
-
-  return (
-    <article className="flex items-start gap-4 py-6 border-b border-white/20 last:border-b-0">
-      {/* 콘텐츠 */}
-      <div className="flex-1">
-        <Link href={`/blog/${post.slug}`}>
-          <h2 className="text-xl font-bold mb-2 text-white hover:text-primary-mint transition-colors duration-300">
-            {post.title}
-          </h2>
-        </Link>
-        <p className="text-white/80 mb-3 leading-relaxed">{post.excerpt}</p>
-        {/* Meta Info */}
-        <div className="flex items-center gap-4 text-sm text-white/60">
-          <button
-            onClick={handleLike}
-            className={`flex items-center gap-1 ${
-              isLiked ? "text-primary-mint" : "hover:text-primary-mint transition-colors duration-300"
-            }`}
-          >
-            <span className="text-lg">{isLiked ? "⭐" : "☆"}</span>
-            <span>{likeCount}</span>
-          </button>
-          <div className="flex items-center gap-1">
-            <span className="text-lg">💬</span>
-            <span>{commentCount}</span>
-          </div>
-          <span>{formatRelativeDate(post.date)}</span>
-        </div>
-      </div>
-    </article>
-  );
-};
+// BlogPostCard extracted to its own component
 
 const Blog: React.FC = () => {
   const { t } = useLanguage();
@@ -151,17 +43,7 @@ const Blog: React.FC = () => {
     }
   }, [isClient]);
 
-  // Overview 섹션의 댓글 수와 좋아요 수를 주기적으로 업데이트하기 위한 강제 리렌더링
-  useEffect(() => {
-    if (!isClient) return;
-
-    const interval = setInterval(() => {
-      // 강제 리렌더링을 위해 상태를 업데이트
-      setSearchQuery((prev) => prev);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [isClient]);
+  // Remove forced polling re-render. If needed, a dedicated hook can manage periodic refreshes.
 
   // 선택된 연도의 활동 수 계산
   const getActivityCount = () => {
@@ -196,22 +78,9 @@ const Blog: React.FC = () => {
   const topTags = getTopTags();
   const displayedTags = showAllTags ? allTags : topTags;
 
-  // 외부 클릭 감지
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (sortDropdownRef.current && !sortDropdownRef.current.contains(event.target as Node)) {
-        setShowSortDropdown(false);
-      }
-      if (yearDropdownRef.current && !yearDropdownRef.current.contains(event.target as Node)) {
-        setShowYearDropdown(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  // Outside click handling using hook
+  useOutsideClick(sortDropdownRef, () => setShowSortDropdown(false));
+  useOutsideClick(yearDropdownRef, () => setShowYearDropdown(false));
 
   const handleTagToggle = (tag: string) => {
     setSelectedTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
